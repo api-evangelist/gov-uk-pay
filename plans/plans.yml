@@ -1,0 +1,19 @@
+plans:
+  - name: Free (Government Services)
+    description: GOV.UK Pay is free to use for public sector organisations. There is no charge to use the GOV.UK Pay API or platform. Payment Service Provider (PSP) transaction fees still apply and are negotiated separately through Crown Commercial Service or directly with Adyen/Stripe.
+    url: https://www.payments.service.gov.uk/
+    features:
+      - Full REST API access
+      - Payment links (no-code)
+      - Recurring payments
+      - Digital wallets (Apple Pay, Google Pay)
+      - MOTO (telephone) payments
+      - Webhook notifications
+      - Reporting and search
+      - Refund management
+      - Dispute reporting
+      - 24/7 support
+      - 99.99% uptime SLA
+      - PCI DSS compliance managed by GOV.UK Pay
+    eligibility: Public sector organisations in the UK (government, NHS, local authorities, police, armed forces)
+    cost: Free (PSP transaction fees apply separately)

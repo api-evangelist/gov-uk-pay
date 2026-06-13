@@ -1,0 +1,24 @@
+finops:
+  platform_cost:
+    amount: 0
+    currency: GBP
+    model: Free
+    notes: There is no charge to use the GOV.UK Pay API or platform. Built and operated by the Government Digital Service (GDS).
+  transaction_fees:
+    model: Pass-through PSP fees
+    providers:
+      - name: Adyen
+        scope: Non-Crown card payments, local authorities, armed forces, police
+        notes: Adyen is replacing Stripe as the PSP for non-Crown organisations
+      - name: Stripe
+        scope: Crown bodies (transitioning)
+        notes: Existing Stripe users in non-Crown bodies are switching to Adyen
+    fee_details: Fees are negotiated through Crown Commercial Service frameworks or directly with the PSP; not published centrally
+  cost_visibility:
+    settlement_data: true
+    reporting_endpoints:
+      - GET /v1/payments (search with settled_date filters)
+      - GET /v1/refunds (search refunds)
+      - GET /v1/disputes (dispute tracking)
+    notes: Settlement data including capture_submit_time, captured_date, and settled_date is available via API for reconciliation
+  documentation_url: https://www.payments.service.gov.uk/

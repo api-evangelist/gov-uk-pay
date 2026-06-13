@@ -1,0 +1,26 @@
+rate_limits:
+  - type: Per-second POST limit (create payments)
+    requests: 15
+    period: 1 second
+    scope: POST /v1/payments
+    notes: Limit of 15 POST requests per second to create new payments
+  - type: Per-second POST limit (capture delayed payments)
+    requests: 15
+    period: 1 second
+    scope: POST /v1/payments/{id}/capture
+    notes: Limit of 15 POST requests per second to capture delayed payments
+  - type: Per-second POST limit (other POSTs)
+    requests: 15
+    period: 1 second
+    scope: All other POST endpoints
+    notes: Limit of 15 other POST requests per second
+  - type: GET request limit
+    requests: Very high
+    period: 1 second
+    scope: All GET endpoints
+    notes: GET requests are rate-limited at a very high level; normal usage is unlikely to be affected
+  error_response:
+    http_status: 429
+    error_code: P0900
+    retry_guidance: After one second, retry in a reasonable way
+  documentation_url: https://docs.payments.service.gov.uk/api_reference/

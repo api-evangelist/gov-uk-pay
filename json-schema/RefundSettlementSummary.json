@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/RefundSettlementSummary.json",
+  "title": "RefundSettlementSummary",
+  "type": "object",
+  "description": "A structure representing information about a settlement for refunds",
+  "properties": {
+    "settled_date": {
+      "type": "string",
+      "description": "The date Stripe took the refund from a payout to your bank account. `settled_date` only appears if Stripe has taken the refund. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DD`.",
+      "example": "2016-01-21",
+      "readOnly": true
+    }
+  },
+  "readOnly": true
+}

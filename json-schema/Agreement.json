@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/Agreement.json",
+  "title": "Agreement",
+  "type": "object",
+  "description": "Contains information about a user's agreement for recurring payments. An agreement represents an understanding between you and your paying user that you'll use their card to make ongoing payments for a service.",
+  "properties": {
+    "agreement_id": {
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this agreement when you created it.",
+      "example": "cgc1ocvh0pt9fqs0ma67r42l58"
+    },
+    "cancelled_date": {
+      "type": "string",
+      "description": "The date and time this agreement was cancelled. This value uses Coordinated Universal Time (UTC) and ISO 8601 format \u2013 `YYYY-MM-DDThh:mm:ss.sssZ`.",
+      "example": "2022-07-08T14:33:00.000Z"
+    },
+    "created_date": {
+      "type": "string",
+      "description": "The date and time you created this agreement. This value uses Coordinated Universal Time (UTC) and ISO 8601 format \u2013 `YYYY-MM-DDThh:mm:ss.sssZ`.",
+      "example": "2022-07-08T14:33:00.000Z"
+    },
+    "description": {
+      "type": "string",
+      "description": "The description you sent when creating this agreement.",
+      "example": "Dorset Council 2022/23 council tax subscription."
+    },
+    "payment_instrument": {
+      "$ref": "#/components/schemas/PaymentInstrument"
+    },
+    "reference": {
+      "type": "string",
+      "description": "The reference you sent when creating this agreement.",
+      "example": "CT-22-23-0001"
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of this agreement. You can [read more about the meanings of each agreement status.](https://docs.payments.service.gov.uk/recurring_payments/#understanding-agreement-status)",
+      "enum": [
+        "created",
+        "active",
+        "cancelled",
+        "inactive"
+      ]
+    },
+    "user_identifier": {
+      "type": "string",
+      "description": "The identifier you sent when creating this agreement. `user_identifier` helps you identify users in your records.",
+      "example": "user-3fb81107-76b7-4910"
+    }
+  }
+}

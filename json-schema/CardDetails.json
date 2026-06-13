@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/CardDetails.json",
+  "title": "CardDetails",
+  "type": "object",
+  "description": "A structure representing the payment card",
+  "properties": {
+    "billing_address": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "card_brand": {
+      "type": "string",
+      "description": "The brand of card the user paid with.",
+      "example": "Visa",
+      "readOnly": true
+    },
+    "card_type": {
+      "type": "string",
+      "description": "The type of card the user paid with.`null` means your user paid with Google Pay or we did not recognise which type of card they paid with.",
+      "enum": [
+        "debit",
+        "credit",
+        "null"
+      ],
+      "example": "debit",
+      "readOnly": true
+    },
+    "cardholder_name": {
+      "type": "string",
+      "example": "Mr. Card holder"
+    },
+    "expiry_date": {
+      "type": "string",
+      "description": "The expiry date of the card the user paid with in `MM/YY` format.",
+      "example": "04/24",
+      "readOnly": true
+    },
+    "first_digits_card_number": {
+      "type": "string",
+      "example": "123456",
+      "readOnly": true
+    },
+    "last_digits_card_number": {
+      "type": "string",
+      "example": "1234",
+      "readOnly": true
+    },
+    "wallet_type": {
+      "type": "string",
+      "description": "The digital wallet type that the user paid with",
+      "enum": [
+        "Apple Pay",
+        "Google Pay"
+      ],
+      "example": "Apple Pay"
+    }
+  }
+}

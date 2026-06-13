@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/AuthorisationRequest.json",
+  "title": "AuthorisationRequest",
+  "type": "object",
+  "description": "Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment.",
+  "properties": {
+    "card_number": {
+      "type": "string",
+      "description": "The full card number from the paying user's card.",
+      "example": "4242424242424242",
+      "maxLength": 19,
+      "minLength": 12
+    },
+    "cardholder_name": {
+      "type": "string",
+      "description": "The name on the paying user's card.",
+      "example": "J. Citizen",
+      "maxLength": 255,
+      "minLength": 0
+    },
+    "cvc": {
+      "type": "string",
+      "description": "The card verification code (CVC) or card verification value (CVV) on the paying user's card.",
+      "example": "123",
+      "maxLength": 4,
+      "minLength": 3
+    },
+    "expiry_date": {
+      "type": "string",
+      "description": "The expiry date of the paying user's card. This value must be in `MM/YY` format.",
+      "example": "09/22",
+      "maxLength": 5,
+      "minLength": 5
+    },
+    "one_time_token": {
+      "type": "string",
+      "description": "This single use token authorises your request and matches it to a payment. GOV.UK Pay generated the `one_time_token` when the payment was created.",
+      "example": "12345-edsfr-6789-gtyu",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "card_number",
+    "cardholder_name",
+    "cvc",
+    "expiry_date",
+    "one_time_token"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/RefundDetailForSearch.json",
+  "title": "RefundDetailForSearch",
+  "type": "object",
+  "description": "Contains the refunds matching your search criteria.",
+  "properties": {
+    "_links": {
+      "$ref": "#/components/schemas/RefundLinksForSearch"
+    },
+    "amount": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The amount refunded to the user in pence.",
+      "example": 120,
+      "readOnly": true
+    },
+    "created_date": {
+      "type": "string",
+      "description": "The date and time you created this refund. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ss.SSSZ`.",
+      "example": "2017-01-10T16:52:07.855Z",
+      "readOnly": true
+    },
+    "payment_id": {
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this payment when you created it.",
+      "example": "hu20sqlact5260q2nanm0q8u93",
+      "readOnly": true
+    },
+    "refund_id": {
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this refund when you created it.",
+      "example": "act4c33g40j3edfmi8jknab84x",
+      "readOnly": true
+    },
+    "settlement_summary": {
+      "$ref": "#/components/schemas/RefundSettlementSummary"
+    },
+    "status": {
+      "type": "string",
+      "description": "The [status of the refund](https://docs.payments.service.gov.uk/refunding_payments/#checking-the-status-of-a-refund-status).",
+      "enum": [
+        "submitted",
+        "success",
+        "error"
+      ],
+      "example": "success",
+      "readOnly": true
+    }
+  }
+}

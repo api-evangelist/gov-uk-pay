@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/PaymentEvent.json",
+  "title": "PaymentEvent",
+  "type": "object",
+  "description": "A List of Payment Events information",
+  "properties": {
+    "_links": {
+      "$ref": "#/components/schemas/PaymentEventLink"
+    },
+    "payment_id": {
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this payment when you created it.",
+      "example": "hu20sqlact5260q2nanm0q8u93",
+      "readOnly": true
+    },
+    "state": {
+      "$ref": "#/components/schemas/PaymentState"
+    },
+    "updated": {
+      "type": "string",
+      "description": "When this payment\u2019s state changed. This value uses Coordinated Universal Time (UTC) and ISO-8601 format - `YYYY-MM-DDThh:mm:ss.SSSZ`.",
+      "example": "2017-01-10T16:44:48.646Z",
+      "readOnly": true
+    }
+  }
+}

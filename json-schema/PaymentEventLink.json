@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/PaymentEventLink.json",
+  "title": "PaymentEventLink",
+  "type": "object",
+  "description": "Resource link for a payment of a payment event",
+  "properties": {
+    "payment_url": {
+      "$ref": "#/components/schemas/Link"
+    }
+  }
+}

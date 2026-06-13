@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/AgreementSearchResults.json",
+  "title": "AgreementSearchResults",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "$ref": "#/components/schemas/SearchNavigationLinks"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of agreements on the current page of search results.",
+      "example": 20
+    },
+    "page": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The [page of agreements you\u2019re viewing](https://docs.payments.service.gov.uk/api_reference/#pagination). To view other pages, make this request again using the `page` parameter.",
+      "example": 1
+    },
+    "results": {
+      "type": "array",
+      "description": "Contains agreements matching your search criteria.",
+      "items": {
+        "$ref": "#/components/schemas/Agreement"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Total number of agreements matching your search criteria.",
+      "example": 100
+    }
+  }
+}

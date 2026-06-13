@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/Address.json",
+  "title": "Address",
+  "type": "object",
+  "description": "A structure representing the billing address of a card",
+  "properties": {
+    "city": {
+      "type": "string",
+      "description": "The paying user's city.",
+      "example": "address city",
+      "maxLength": 255,
+      "minLength": 0
+    },
+    "country": {
+      "type": "string",
+      "description": "The paying user\u2019s country, displayed as a 2-character ISO-3166-1-alpha-2 code.",
+      "example": "GB"
+    },
+    "line1": {
+      "type": "string",
+      "description": "The first line of the paying user\u2019s address.",
+      "example": "address line 1",
+      "maxLength": 255,
+      "minLength": 0
+    },
+    "line2": {
+      "type": "string",
+      "description": "The second line of the paying user\u2019s address.",
+      "example": "address line 2",
+      "maxLength": 255,
+      "minLength": 0
+    },
+    "postcode": {
+      "type": "string",
+      "description": "The paying user's postcode.",
+      "example": "AB1 2CD",
+      "maxLength": 25,
+      "minLength": 0
+    }
+  }
+}

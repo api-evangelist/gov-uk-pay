@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/Link.json",
+  "title": "Link",
+  "type": "object",
+  "description": "A link related to a payment",
+  "properties": {
+    "href": {
+      "type": "string",
+      "description": "A URL that lets you perform additional actions to this payment when combined with the associated `method`.",
+      "example": "https://an.example.link/from/payment/platform",
+      "readOnly": true
+    },
+    "method": {
+      "type": "string",
+      "description": "An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.",
+      "example": "GET",
+      "readOnly": true
+    }
+  }
+}

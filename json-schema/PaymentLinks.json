@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/PaymentLinks.json",
+  "title": "PaymentLinks",
+  "type": "object",
+  "description": "links for payment",
+  "properties": {
+    "auth_url_post": {
+      "$ref": "#/components/schemas/PostLink"
+    },
+    "cancel": {
+      "$ref": "#/components/schemas/PostLink"
+    },
+    "capture": {
+      "$ref": "#/components/schemas/PostLink"
+    },
+    "events": {
+      "$ref": "#/components/schemas/Link"
+    },
+    "next_url": {
+      "$ref": "#/components/schemas/Link"
+    },
+    "next_url_post": {
+      "$ref": "#/components/schemas/PostLink"
+    },
+    "refunds": {
+      "$ref": "#/components/schemas/Link"
+    },
+    "self": {
+      "$ref": "#/components/schemas/Link"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/PaymentInstrument.json",
+  "title": "PaymentInstrument",
+  "type": "object",
+  "properties": {
+    "CardDetails": {
+      "$ref": "#/components/schemas/CardDetailsFromResponse"
+    },
+    "created_date": {
+      "type": "string",
+      "description": "The date and time you created this payment instrument. This value uses Coordinated Universal Time (UTC) and ISO 8601 format \u2013 `YYYY-MM-DDThh:mm:ss.sssZ`.",
+      "example": "2022-07-08T14:33:00.000Z"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of payment instrument.",
+      "enum": [
+        "card"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/RefundSummary.json",
+  "title": "RefundSummary",
+  "type": "object",
+  "description": "A structure representing the refunds availability",
+  "properties": {
+    "amount_available": {
+      "type": "integer",
+      "format": "int64",
+      "description": "How much you can refund to the user, in pence.",
+      "example": 100,
+      "readOnly": true
+    },
+    "amount_submitted": {
+      "type": "integer",
+      "format": "int64",
+      "description": "How much you\u2019ve already refunded to the user, in pence.",
+      "readOnly": true
+    },
+    "status": {
+      "type": "string",
+      "description": "Whether you can [refund the payment](https://docs.payments.service.gov.uk/refunding_payments/#checking-the-status-of-a-refund-status).",
+      "example": "available"
+    }
+  }
+}

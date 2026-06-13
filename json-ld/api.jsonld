@@ -1,0 +1,41 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "pay": "https://docs.payments.service.gov.uk/api_reference/#"
+  },
+  "@type": "WebAPI",
+  "@id": "https://publicapi.payments.service.gov.uk/",
+  "name": "GOV.UK Pay API",
+  "description": "REST API for accepting card payments, issuing refunds, managing recurring payment agreements, and retrieving payment data for UK public sector organisations.",
+  "documentation": "https://docs.payments.service.gov.uk/",
+  "termsOfService": "https://www.payments.service.gov.uk/terms/",
+  "provider": {
+    "@type": "Organization",
+    "name": "Government Digital Service",
+    "url": "https://www.gov.uk/government/organisations/government-digital-service",
+    "email": "govuk-pay-support@digital.cabinet-office.gov.uk"
+  },
+  "offers": {
+    "@type": "Offer",
+    "description": "Free for UK public sector organisations"
+  },
+  "additionalType": [
+    "https://schema.org/PaymentService",
+    "https://schema.org/GovernmentService"
+  ],
+  "serviceArea": {
+    "@type": "Country",
+    "name": "United Kingdom"
+  },
+  "featureList": [
+    "Card Payments",
+    "Refunds",
+    "Recurring Payment Agreements",
+    "Payment Disputes",
+    "Webhooks",
+    "MOTO Payments",
+    "PCI DSS Compliance"
+  ],
+  "softwareVersion": "1.0.3",
+  "url": "https://publicapi.payments.service.gov.uk/"
+}

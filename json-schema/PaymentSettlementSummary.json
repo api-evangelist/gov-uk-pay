@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/PaymentSettlementSummary.json",
+  "title": "PaymentSettlementSummary",
+  "type": "object",
+  "description": "A structure representing information about a settlement",
+  "properties": {
+    "capture_submit_time": {
+      "type": "string",
+      "description": "The date and time GOV.UK Pay asked your payment service provider to take the payment from your user\u2019s account. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ss.SSSZ`",
+      "example": "2016-01-21T17:15:00.000Z",
+      "readOnly": true
+    },
+    "captured_date": {
+      "type": "string",
+      "description": "The date your payment service provider took the payment from your user. This value uses ISO 8601 format - `YYYY-MM-DD`",
+      "example": "2016-01-21",
+      "readOnly": true
+    },
+    "settled_date": {
+      "type": "string",
+      "description": "The date that the transaction was paid into the service's account.",
+      "example": "2016-01-21",
+      "readOnly": true
+    }
+  }
+}

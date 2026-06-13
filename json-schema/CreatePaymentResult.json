@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/CreatePaymentResult.json",
+  "title": "CreatePaymentResult",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "$ref": "#/components/schemas/PaymentLinks"
+    },
+    "amount": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The amount, in pence, the user has paid or will pay. `amount` will match the value you sent in the request body.",
+      "example": 1200
+    },
+    "card_details": {
+      "$ref": "#/components/schemas/CardDetailsFromResponse"
+    },
+    "created_date": {
+      "type": "string",
+      "description": "The date you created the payment.",
+      "example": "2016-01-21T17:15:00.000Z"
+    },
+    "delayed_capture": {
+      "type": "boolean",
+      "description": "`delayed_capture` is `true` if you\u2019re controlling [when GOV.UK Pay takes (\u2018captures\u2019) the payment from the paying user\u2019s bank account](https://docs.payments.service.gov.uk/delayed_capture).",
+      "example": false,
+      "readOnly": true
+    },
+    "description": {
+      "type": "string",
+      "description": "The description you sent in the request body when creating this payment.",
+      "example": "New passport application"
+    },
+    "email": {
+      "type": "string",
+      "description": "The paying user\u2019s email address. The paying user\u2019s email field will be prefilled with this value when they make their payment. `email` does not appear if you did not include it in the request body.",
+      "example": "citizen@example.org"
+    },
+    "language": {
+      "type": "string",
+      "description": "The language of the user\u2019s payment page.",
+      "enum": [
+        "en",
+        "cy"
+      ],
+      "example": "en"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/ExternalMetadata"
+    },
+    "moto": {
+      "type": "boolean",
+      "description": "Indicates if this payment is a [Mail Order / Telephone Order (MOTO) payment](https://docs.payments.service.gov.uk/moto_payments).",
+      "example": false
+    },
+    "payment_id": {
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this payment when you created it.",
+      "example": "hu20sqlact5260q2nanm0q8u93"
+    },
+    "payment_provider": {
+      "type": "string",
+      "example": "worldpay"
+    },
+    "provider_id": {
+      "type": "string",
+      "description": "The reference number your payment service provider associated with the payment.",
+      "example": "null"
+    },
+    "reference": {
+      "type": "string",
+      "description": "The reference number you associated with this payment.",
+      "example": "12345"
+    },
+    "refund_summary": {
+      "$ref": "#/components/schemas/RefundSummary"
+    },
+    "return_url": {
+      "type": "string",
+      "description": "The URL you direct the paying user to after their payment journey on GOV.UK Pay ends.",
+      "example": "https://service-name.gov.uk/transactions/12345"
+    },
+    "settlement_summary": {
+      "$ref": "#/components/schemas/PaymentSettlementSummary"
+    },
+    "state": {
+      "$ref": "#/components/schemas/PaymentState"
+    }
+  }
+}

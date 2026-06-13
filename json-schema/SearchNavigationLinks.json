@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/SearchNavigationLinks.json",
+  "title": "SearchNavigationLinks",
+  "type": "object",
+  "description": "Links to navigate through pages of your search.",
+  "properties": {
+    "first_page": {
+      "$ref": "#/components/schemas/Link"
+    },
+    "last_page": {
+      "$ref": "#/components/schemas/Link"
+    },
+    "next_page": {
+      "$ref": "#/components/schemas/Link"
+    },
+    "prev_page": {
+      "$ref": "#/components/schemas/Link"
+    },
+    "self": {
+      "$ref": "#/components/schemas/Link"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/CreateCardPaymentRequest.json",
+  "title": "CreateCardPaymentRequest",
+  "type": "object",
+  "description": "The create payment request body",
+  "properties": {
+    "agreement_id": {
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with a recurring payments agreement. Including `agreement_id` in your request tells the API to take this payment using the card details that are associated with this agreement. `agreement_id` must match an active agreement ID. You must set `authorisation_mode` to `agreement` for the API to accept `agreement_id`.",
+      "example": "abcefghjklmnopqr1234567890",
+      "maxLength": 26,
+      "minLength": 26
+    },
+    "agreement_payment_type": {
+      "type": "string",
+      "description": "When a standing order agreement transaction is initiated we have to include an initiated reason attribute.This can have a value of `instalment`, `recurring`, or `unscheduled`.We must have a `set_up_agreement` property or you set `authorisation_mode` to `agreement` for the API to accept the AgreementPaymentType.",
+      "enum": [
+        "instalment",
+        "recurring",
+        "unscheduled"
+      ]
+    },
+    "amount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Sets the amount the user will pay, in pence.",
+      "example": 12000,
+      "maximum": 10000000,
+      "minimum": 0
+    },
+    "authorisation_mode": {
+      "type": "string",
+      "description": "Sets how you intend to authorise the payment. Defaults to `web`. Payments created with `web` mode follow the [standard GOV.UK Pay payment journey](https://docs.payments.service.gov.uk/payment_flow/). Paying users visit the `next_url` in the response to complete their payment. Payments created with `agreement` mode are authorised with an agreement for recurring payments. If you create an `agreement` payment, you must also send an active `agreement_id`. You must not send `return_url`, `email`, or `prefilled_cardholder_details` or your request will fail. Payments created with `moto_api` mode return an `auth_url_post` object and a `one_time_token`. You can use `auth_url_post` and `one_time_token` to send the paying user\u2019s card details through the API and complete the payment. If you create a `moto_api` payment, do not send a `return_url` in your request.",
+      "enum": [
+        "web",
+        "agreement",
+        "moto_api"
+      ]
+    },
+    "delayed_capture": {
+      "type": "boolean",
+      "description": "You can use this parameter to [delay taking a payment from the paying user\u2019s bank account](https://docs.payments.service.gov.uk/delayed_capture/#delay-taking-a-payment). For example, you might want to do your own anti-fraud checks on payments, or check that users are eligible for your service. Defaults to `false`.",
+      "example": false
+    },
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of the payment you\u2019re creating. Paying users see this description on the payment pages. Service staff see the description in the GOV.UK Pay admin tool",
+      "example": "New passport application",
+      "maxLength": 255,
+      "minLength": 0
+    },
+    "email": {
+      "type": "string",
+      "description": "email",
+      "example": "Joe.Bogs@example.org"
+    },
+    "language": {
+      "type": "string",
+      "description": "[Sets the language of the user\u2019s payment page](https://docs.payments.service.gov.uk/optional_features/welsh_language) with an ISO-6391 Alpha-2 code of a supported language.",
+      "enum": [
+        "en",
+        "cy"
+      ],
+      "example": "en"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/ExternalMetadata"
+    },
+    "moto": {
+      "type": "boolean",
+      "description": "You can use this parameter to [designate a payment as a Mail Order / Telephone Order (MOTO) payment](https://docs.payments.service.gov.uk/moto_payments).",
+      "example": false
+    },
+    "prefilled_cardholder_details": {
+      "$ref": "#/components/schemas/PrefilledCardholderDetails"
+    },
+    "reference": {
+      "type": "string",
+      "description": "Associate a reference with this payment. `reference` is not unique - multiple payments can have identical `reference` values.",
+      "example": "12345",
+      "maxLength": 255,
+      "minLength": 0
+    },
+    "return_url": {
+      "type": "string",
+      "description": "The URL [the paying user is directed to after their payment journey on GOV.UK Pay ends](https://docs.payments.service.gov.uk/making_payments/#choose-the-return-url-and-match-your-users-to-payments).",
+      "example": "https://service-name.gov.uk/transactions/12345",
+      "maxLength": 2000,
+      "minLength": 0
+    },
+    "set_up_agreement": {
+      "type": "string",
+      "description": "Use this parameter to set up an existing agreement for recurring payments. The `set_up_agreement` value you send must be a valid `agreement_id`.",
+      "example": "abcefghjklmnopqr1234567890",
+      "maxLength": 26,
+      "minLength": 26
+    }
+  },
+  "required": [
+    "amount",
+    "description",
+    "reference",
+    "return_url"
+  ]
+}

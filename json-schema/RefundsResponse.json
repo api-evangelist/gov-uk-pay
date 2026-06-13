@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/RefundsResponse.json",
+  "title": "RefundsResponse",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "$ref": "#/components/schemas/RefundLinksForSearch"
+    },
+    "payment_id": {
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay associated with this payment when you created it.",
+      "example": "hu20sqlact5260q2nanm0q8u93"
+    }
+  }
+}

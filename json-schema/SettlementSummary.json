@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/SettlementSummary.json",
+  "title": "SettlementSummary",
+  "type": "object",
+  "description": "Contains information about when a lost dispute was settled. A dispute is settled when your payment service provider takes it from a payout to your bank account. 'settlement_summary' only appears if you lost the dispute.",
+  "properties": {
+    "settled_date": {
+      "type": "string",
+      "description": "The date your payment service provider took the disputed payment and dispute fee from a payout to your bank account. This value appears in ISO 8601 format - `YYYY-MM-DD`. `settled_date` only appears if you lost the dispute.",
+      "example": "2022-07-28",
+      "readOnly": true
+    }
+  }
+}

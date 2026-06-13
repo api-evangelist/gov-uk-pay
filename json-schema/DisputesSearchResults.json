@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/DisputesSearchResults.json",
+  "title": "DisputesSearchResults",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of disputes on the current page of search results.",
+      "example": 20
+    },
+    "links": {
+      "$ref": "#/components/schemas/SearchNavigationLinks"
+    },
+    "page": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The page of results you\u2019re viewing. To view other pages, make this request again using the 'page' parameter.",
+      "example": 1
+    },
+    "results": {
+      "type": "array",
+      "description": "Contains disputes matching your search criteria.",
+      "items": {
+        "$ref": "#/components/schemas/DisputeDetailForSearch"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of total disputes matching your search criteria.",
+      "example": 100
+    }
+  }
+}

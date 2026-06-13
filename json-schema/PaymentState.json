@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/PaymentState.json",
+  "title": "PaymentState",
+  "type": "object",
+  "description": "A structure representing the current state of the payment in its lifecycle.",
+  "properties": {
+    "can_retry": {
+      "type": "boolean",
+      "description": "If `can_retry` is `true`, you can use this agreement to try to take another recurring payment. If `can_retry` is `false`, you cannot take another recurring payment with this agreement. `can_retry` only appears on failed payments that were attempted using an agreement for recurring payments.",
+      "nullable": true,
+      "readOnly": true
+    },
+    "code": {
+      "type": "string",
+      "description": "An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed. `code` only appears if the payment failed.",
+      "example": "P010",
+      "readOnly": true
+    },
+    "finished": {
+      "type": "boolean",
+      "description": "Indicates whether a payment journey is finished.",
+      "readOnly": true
+    },
+    "message": {
+      "type": "string",
+      "description": "A description of what went wrong with this payment. `message` only appears if the payment failed.",
+      "example": "User cancelled the payment",
+      "readOnly": true
+    },
+    "status": {
+      "type": "string",
+      "description": "Where the payment is in [the payment status lifecycle](https://docs.payments.service.gov.uk/api_reference/#payment-status-meanings).",
+      "example": "created",
+      "readOnly": true
+    }
+  }
+}

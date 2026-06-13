@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/PaymentLinksForSearch.json",
+  "title": "PaymentLinksForSearch",
+  "type": "object",
+  "description": "links for search payment resource",
+  "properties": {
+    "cancel": {
+      "$ref": "#/components/schemas/PostLink"
+    },
+    "capture": {
+      "$ref": "#/components/schemas/PostLink"
+    },
+    "events": {
+      "$ref": "#/components/schemas/Link"
+    },
+    "refunds": {
+      "$ref": "#/components/schemas/Link"
+    },
+    "self": {
+      "$ref": "#/components/schemas/Link"
+    }
+  }
+}

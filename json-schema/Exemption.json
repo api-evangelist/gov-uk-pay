@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/Exemption.json",
+  "title": "Exemption",
+  "type": "object",
+  "description": "A structure representing that 3DS exemption was requested and the outcome of the exemption, if applicable.",
+  "properties": {
+    "outcome": {
+      "$ref": "#/components/schemas/Outcome"
+    },
+    "requested": {
+      "type": "boolean",
+      "description": "Indicates whether an exemption was requested for the given payment.",
+      "example": true,
+      "readOnly": true
+    },
+    "type": {
+      "type": "string",
+      "description": "Indicates the type of exemption. Only present for corporate exemption",
+      "example": "corporate",
+      "readOnly": true
+    }
+  }
+}

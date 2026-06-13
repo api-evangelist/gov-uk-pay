@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/EmbeddedRefunds.json",
+  "title": "EmbeddedRefunds",
+  "type": "object",
+  "properties": {
+    "refunds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Refund"
+      }
+    }
+  }
+}

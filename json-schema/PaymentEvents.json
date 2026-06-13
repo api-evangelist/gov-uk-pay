@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/PaymentEvents.json",
+  "title": "PaymentEvents",
+  "type": "object",
+  "description": "A List of Payment Events information",
+  "properties": {
+    "_links": {
+      "$ref": "#/components/schemas/PaymentLinksForEvents"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PaymentEvent"
+      }
+    },
+    "payment_id": {
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this payment when you created it.",
+      "example": "hu20sqlact5260q2nanm0q8u93",
+      "readOnly": true
+    }
+  }
+}

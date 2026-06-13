@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/ThreeDSecure.json",
+  "title": "ThreeDSecure",
+  "type": "object",
+  "description": "Object containing information about the 3D Secure authentication of the payment.",
+  "properties": {
+    "required": {
+      "type": "boolean",
+      "description": "Indicates if this payment was authorised with 3D Secure authentication. `required` is `true` if the payment required 3D Secure authentication."
+    }
+  }
+}

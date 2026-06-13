@@ -1,0 +1,248 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "pay": "https://docs.payments.service.gov.uk/api_reference/#",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Address": {
+      "@id": "pay:Address",
+      "@type": "@id"
+    },
+    "Agreement": {
+      "@id": "pay:Agreement",
+      "@type": "@id"
+    },
+    "AgreementSearchResults": {
+      "@id": "pay:AgreementSearchResults",
+      "@type": "@id"
+    },
+    "AuthorisationRequest": {
+      "@id": "pay:AuthorisationRequest",
+      "@type": "@id"
+    },
+    "AuthorisationSummary": {
+      "@id": "pay:AuthorisationSummary",
+      "@type": "@id"
+    },
+    "CardDetails": {
+      "@id": "pay:CardDetails",
+      "@type": "@id"
+    },
+    "CardDetailsFromResponse": {
+      "@id": "pay:CardDetailsFromResponse",
+      "@type": "@id"
+    },
+    "CreateAgreementRequest": {
+      "@id": "pay:CreateAgreementRequest",
+      "@type": "@id"
+    },
+    "CreateCardPaymentRequest": {
+      "@id": "pay:CreateCardPaymentRequest",
+      "@type": "@id"
+    },
+    "CreatePaymentResult": {
+      "@id": "pay:CreatePaymentResult",
+      "@type": "@id"
+    },
+    "DisputeDetailForSearch": {
+      "@id": "pay:DisputeDetailForSearch",
+      "@type": "@id"
+    },
+    "DisputeLinksForSearch": {
+      "@id": "pay:DisputeLinksForSearch",
+      "@type": "@id"
+    },
+    "DisputesSearchResults": {
+      "@id": "pay:DisputesSearchResults",
+      "@type": "@id"
+    },
+    "EmbeddedRefunds": {
+      "@id": "pay:EmbeddedRefunds",
+      "@type": "@id"
+    },
+    "ErrorResponse": {
+      "@id": "pay:ErrorResponse",
+      "@type": "@id"
+    },
+    "Exemption": {
+      "@id": "pay:Exemption",
+      "@type": "@id"
+    },
+    "ExternalMetadata": {
+      "@id": "pay:ExternalMetadata",
+      "@type": "@id"
+    },
+    "Link": {
+      "@id": "pay:Link",
+      "@type": "@id"
+    },
+    "Outcome": {
+      "@id": "pay:Outcome",
+      "@type": "@id"
+    },
+    "PaymentDetailForSearch": {
+      "@id": "pay:PaymentDetailForSearch",
+      "@type": "@id"
+    },
+    "PaymentEvent": {
+      "@id": "pay:PaymentEvent",
+      "@type": "@id"
+    },
+    "PaymentEventLink": {
+      "@id": "pay:PaymentEventLink",
+      "@type": "@id"
+    },
+    "PaymentEvents": {
+      "@id": "pay:PaymentEvents",
+      "@type": "@id"
+    },
+    "PaymentInstrument": {
+      "@id": "pay:PaymentInstrument",
+      "@type": "@id"
+    },
+    "PaymentLinks": {
+      "@id": "pay:PaymentLinks",
+      "@type": "@id"
+    },
+    "PaymentLinksForEvents": {
+      "@id": "pay:PaymentLinksForEvents",
+      "@type": "@id"
+    },
+    "PaymentLinksForSearch": {
+      "@id": "pay:PaymentLinksForSearch",
+      "@type": "@id"
+    },
+    "PaymentRefundRequest": {
+      "@id": "pay:PaymentRefundRequest",
+      "@type": "@id"
+    },
+    "PaymentSearchResults": {
+      "@id": "pay:PaymentSearchResults",
+      "@type": "@id"
+    },
+    "PaymentSettlementSummary": {
+      "@id": "pay:PaymentSettlementSummary",
+      "@type": "@id"
+    },
+    "PaymentState": {
+      "@id": "pay:PaymentState",
+      "@type": "@id"
+    },
+    "PaymentWithAllLinks": {
+      "@id": "pay:PaymentWithAllLinks",
+      "@type": "@id"
+    },
+    "PostLink": {
+      "@id": "pay:PostLink",
+      "@type": "@id"
+    },
+    "PrefilledCardholderDetails": {
+      "@id": "pay:PrefilledCardholderDetails",
+      "@type": "@id"
+    },
+    "Refund": {
+      "@id": "pay:Refund",
+      "@type": "@id"
+    },
+    "RefundDetailForSearch": {
+      "@id": "pay:RefundDetailForSearch",
+      "@type": "@id"
+    },
+    "RefundForSearchResult": {
+      "@id": "pay:RefundForSearchResult",
+      "@type": "@id"
+    },
+    "RefundLinksForSearch": {
+      "@id": "pay:RefundLinksForSearch",
+      "@type": "@id"
+    },
+    "RefundSearchResults": {
+      "@id": "pay:RefundSearchResults",
+      "@type": "@id"
+    },
+    "RefundSettlementSummary": {
+      "@id": "pay:RefundSettlementSummary",
+      "@type": "@id"
+    },
+    "RefundSummary": {
+      "@id": "pay:RefundSummary",
+      "@type": "@id"
+    },
+    "RefundsResponse": {
+      "@id": "pay:RefundsResponse",
+      "@type": "@id"
+    },
+    "RequestError": {
+      "@id": "pay:RequestError",
+      "@type": "@id"
+    },
+    "SearchNavigationLinks": {
+      "@id": "pay:SearchNavigationLinks",
+      "@type": "@id"
+    },
+    "SettlementSummary": {
+      "@id": "pay:SettlementSummary",
+      "@type": "@id"
+    },
+    "ThreeDSecure": {
+      "@id": "pay:ThreeDSecure",
+      "@type": "@id"
+    },
+    "amount": {
+      "@id": "schema:price",
+      "@type": "xsd:integer"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "email": {
+      "@id": "schema:email"
+    },
+    "reference": {
+      "@id": "pay:reference"
+    },
+    "payment_id": {
+      "@id": "pay:payment_id"
+    },
+    "agreement_id": {
+      "@id": "pay:agreement_id"
+    },
+    "return_url": {
+      "@id": "schema:url"
+    },
+    "created_date": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "state": {
+      "@id": "pay:state"
+    },
+    "card_brand": {
+      "@id": "pay:card_brand"
+    },
+    "cardholder_name": {
+      "@id": "schema:name"
+    },
+    "first_digits_card_number": {
+      "@id": "pay:first_digits_card_number"
+    },
+    "last_digits_card_number": {
+      "@id": "pay:last_digits_card_number"
+    },
+    "expiry_date": {
+      "@id": "pay:expiry_date"
+    },
+    "billing_address": {
+      "@id": "schema:billingAddress"
+    },
+    "refund_summary": {
+      "@id": "pay:refund_summary"
+    },
+    "settlement_summary": {
+      "@id": "pay:settlement_summary"
+    },
+    "payment_provider": {
+      "@id": "pay:payment_provider"
+    }
+  }
+}

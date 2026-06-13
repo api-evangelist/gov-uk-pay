@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/gov-uk-pay/blob/main/json-schema/RefundSearchResults.json",
+  "title": "RefundSearchResults",
+  "type": "object",
+  "properties": {
+    "_links": {
+      "$ref": "#/components/schemas/SearchNavigationLinks"
+    },
+    "count": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of refunds on the current page of search results.",
+      "example": 20
+    },
+    "page": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The [page of results](payments.service.gov.uk/api_reference/#pagination) you\u2019re viewing. To view other pages, make this request again using the `page` parameter.",
+      "example": 1
+    },
+    "results": {
+      "type": "array",
+      "description": "Contains the refunds matching your search criteria.",
+      "items": {
+        "$ref": "#/components/schemas/RefundDetailForSearch"
+      }
+    },
+    "total": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of refunds matching your search criteria.",
+      "example": 100
+    }
+  }
+}

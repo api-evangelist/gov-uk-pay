@@ -1,0 +1,745 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GOV.UK Pay API Vocabulary",
+  "description": "Terms and concepts used in the GOV.UK Pay API",
+  "operations": [
+    {
+      "operationId": "Search agreements",
+      "method": "GET",
+      "path": "/v1/agreements",
+      "summary": "Search agreements for recurring payments",
+      "description": "You can use this endpoint to search for recurring payments agreements. The agreements are sorted by date, with the most recently-created agreements appearing first.",
+      "tags": [
+        "Agreements"
+      ]
+    },
+    {
+      "operationId": "Create an agreement",
+      "method": "POST",
+      "path": "/v1/agreements",
+      "summary": "Create an agreement for recurring payments",
+      "description": "You can use this endpoint to create a new agreement.",
+      "tags": [
+        "Agreements"
+      ]
+    },
+    {
+      "operationId": "Get an agreement",
+      "method": "GET",
+      "path": "/v1/agreements/{agreementId}",
+      "summary": "Get information about a single agreement for recurring payments",
+      "description": "You can use this endpoint to get information about a single recurring payments agreement.",
+      "tags": [
+        "Agreements"
+      ]
+    },
+    {
+      "operationId": "Cancel an agreement",
+      "method": "POST",
+      "path": "/v1/agreements/{agreementId}/cancel",
+      "summary": "Cancel an agreement for recurring payments",
+      "description": "You can use this endpoint to cancel a recurring payments agreement in the `active` status.",
+      "tags": [
+        "Agreements"
+      ]
+    },
+    {
+      "operationId": "Authorise a MOTO payment",
+      "method": "POST",
+      "path": "/v1/auth",
+      "summary": "Send card details to authorise a MOTO payment",
+      "description": "You can use this endpoint to [authorise payments](https://docs.payments.service.gov.uk/moto_payments/moto_send_card_details_api/) you have created with `authorisation_mode` set to `moto_api`.",
+      "tags": [
+        "Authorise card payments"
+      ]
+    },
+    {
+      "operationId": "Search disputes",
+      "method": "GET",
+      "path": "/v1/disputes",
+      "summary": "Search disputes",
+      "description": "You can use this endpoint to search disputes. A dispute is when [a paying user challenges a completed payment through their bank](https://docs.payments.service.gov.uk/disputes/).",
+      "tags": [
+        "Disputes"
+      ]
+    },
+    {
+      "operationId": "Search payments",
+      "method": "GET",
+      "path": "/v1/payments",
+      "summary": "Search payments",
+      "description": "You can use this endpoint to [search for payments you\u2019ve previously created](https://docs.payments.service.gov.uk/reporting/#search-payments/). Payments are sorted by date, with the most recently-created payment appearing first.",
+      "tags": [
+        "Card payments"
+      ]
+    },
+    {
+      "operationId": "Create a payment",
+      "method": "POST",
+      "path": "/v1/payments",
+      "summary": "Create a payment",
+      "description": "You can use this endpoint to [create a new payment](https://docs.payments.service.gov.uk/making_payments/).",
+      "tags": [
+        "Card payments"
+      ]
+    },
+    {
+      "operationId": "Get a payment",
+      "method": "GET",
+      "path": "/v1/payments/{paymentId}",
+      "summary": "Get information about a single payment",
+      "description": "You can use this endpoint to [get details about a single payment you\u2019ve previously created](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment).",
+      "tags": [
+        "Card payments"
+      ]
+    },
+    {
+      "operationId": "Cancel a payment",
+      "method": "POST",
+      "path": "/v1/payments/{paymentId}/cancel",
+      "summary": "Cancel payment",
+      "description": "You can use this endpoint [to cancel an unfinished payment](https://docs.payments.service.gov.uk/making_payments/#cancel-a-payment-that-s-in-progress).",
+      "tags": [
+        "Card payments"
+      ]
+    },
+    {
+      "operationId": "Capture a payment",
+      "method": "POST",
+      "path": "/v1/payments/{paymentId}/capture",
+      "summary": "Take a delayed payment",
+      "description": "You can use this endpoint to [take (\u2018capture\u2019) a delayed payment from the paying user\u2019s bank account](https://docs.payments.service.gov.uk/delayed_capture/).",
+      "tags": [
+        "Card payments"
+      ]
+    },
+    {
+      "operationId": "Get events for a payment",
+      "method": "GET",
+      "path": "/v1/payments/{paymentId}/events",
+      "summary": "Get a payment's events",
+      "description": "You can use this endpoint to [get a list of a payment\u2019s events](https://docs.payments.service.gov.uk/reporting/#get-a-payment-s-events). A payment event is when a payment\u2019s `state` changes, such as when the payment is created, or when the paying user submits their details.",
+      "tags": [
+        "Card payments"
+      ]
+    },
+    {
+      "operationId": "Get all refunds for a payment",
+      "method": "GET",
+      "path": "/v1/payments/{paymentId}/refunds",
+      "summary": "Get information about a payment\u2019s refunds",
+      "description": "You can use this endpoint to [get a list of refunds for a payment](https://docs.payments.service.gov.uk/refunding_payments/#get-all-refunds-for-a-single-payment).",
+      "tags": [
+        "Refunding card payments"
+      ]
+    },
+    {
+      "operationId": "Submit a refund for a payment",
+      "method": "POST",
+      "path": "/v1/payments/{paymentId}/refunds",
+      "summary": "Refund a payment",
+      "description": "You can use this endpoint to [fully or partially refund a payment](https://docs.payments.service.gov.uk/refunding_payments).",
+      "tags": [
+        "Refunding card payments"
+      ]
+    },
+    {
+      "operationId": "Get a payment refund",
+      "method": "GET",
+      "path": "/v1/payments/{paymentId}/refunds/{refundId}",
+      "summary": "Check the status of a refund",
+      "description": "You can use this endpoint to [get details about an individual refund](https://docs.payments.service.gov.uk/refunding_payments/#checking-the-status-of-a-refund).",
+      "tags": [
+        "Refunding card payments"
+      ]
+    },
+    {
+      "operationId": "Search refunds",
+      "method": "GET",
+      "path": "/v1/refunds",
+      "summary": "Search refunds",
+      "description": "You can use this endpoint to [search refunds you\u2019ve previously created](https://docs.payments.service.gov.uk/refunding_payments/#searching-refunds). The refunds are sorted by date, with the most recently created refunds appearing first.",
+      "tags": [
+        "Refunding card payments"
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "city",
+      "type": "string",
+      "description": "The paying user's city.",
+      "format": ""
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "description": "The paying user\u2019s country, displayed as a 2-character ISO-3166-1-alpha-2 code.",
+      "format": ""
+    },
+    {
+      "name": "line1",
+      "type": "string",
+      "description": "The first line of the paying user\u2019s address.",
+      "format": ""
+    },
+    {
+      "name": "line2",
+      "type": "string",
+      "description": "The second line of the paying user\u2019s address.",
+      "format": ""
+    },
+    {
+      "name": "postcode",
+      "type": "string",
+      "description": "The paying user's postcode.",
+      "format": ""
+    },
+    {
+      "name": "agreement_id",
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this agreement when you created it.",
+      "format": ""
+    },
+    {
+      "name": "cancelled_date",
+      "type": "string",
+      "description": "The date and time this agreement was cancelled. This value uses Coordinated Universal Time (UTC) and ISO 8601 format \u2013 `YYYY-MM-DDThh:mm:ss.sssZ`.",
+      "format": ""
+    },
+    {
+      "name": "created_date",
+      "type": "string",
+      "description": "The date and time you created this agreement. This value uses Coordinated Universal Time (UTC) and ISO 8601 format \u2013 `YYYY-MM-DDThh:mm:ss.sssZ`.",
+      "format": ""
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "The description you sent when creating this agreement.",
+      "format": ""
+    },
+    {
+      "name": "payment_instrument",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "reference",
+      "type": "string",
+      "description": "The reference you sent when creating this agreement.",
+      "format": ""
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "The status of this agreement. You can [read more about the meanings of each agreement status.](https://docs.payments.service.gov.uk/recurring_payments/#understanding-agreement-status)",
+      "format": ""
+    },
+    {
+      "name": "user_identifier",
+      "type": "string",
+      "description": "The identifier you sent when creating this agreement. `user_identifier` helps you identify users in your records.",
+      "format": ""
+    },
+    {
+      "name": "_links",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "count",
+      "type": "integer",
+      "description": "Number of agreements on the current page of search results.",
+      "format": "int32"
+    },
+    {
+      "name": "page",
+      "type": "integer",
+      "description": "The [page of agreements you\u2019re viewing](https://docs.payments.service.gov.uk/api_reference/#pagination). To view other pages, make this request again using the `page` parameter.",
+      "format": "int32"
+    },
+    {
+      "name": "results",
+      "type": "array",
+      "description": "Contains agreements matching your search criteria.",
+      "format": ""
+    },
+    {
+      "name": "total",
+      "type": "integer",
+      "description": "Total number of agreements matching your search criteria.",
+      "format": "int32"
+    },
+    {
+      "name": "card_number",
+      "type": "string",
+      "description": "The full card number from the paying user's card.",
+      "format": ""
+    },
+    {
+      "name": "cardholder_name",
+      "type": "string",
+      "description": "The name on the paying user's card.",
+      "format": ""
+    },
+    {
+      "name": "cvc",
+      "type": "string",
+      "description": "The card verification code (CVC) or card verification value (CVV) on the paying user's card.",
+      "format": ""
+    },
+    {
+      "name": "expiry_date",
+      "type": "string",
+      "description": "The expiry date of the paying user's card. This value must be in `MM/YY` format.",
+      "format": ""
+    },
+    {
+      "name": "one_time_token",
+      "type": "string",
+      "description": "This single use token authorises your request and matches it to a payment. GOV.UK Pay generated the `one_time_token` when the payment was created.",
+      "format": ""
+    },
+    {
+      "name": "three_d_secure",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "billing_address",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "card_brand",
+      "type": "string",
+      "description": "The brand of card the user paid with.",
+      "format": ""
+    },
+    {
+      "name": "card_type",
+      "type": "string",
+      "description": "The type of card the user paid with.`null` means your user paid with Google Pay or we did not recognise which type of card they paid with.",
+      "format": ""
+    },
+    {
+      "name": "first_digits_card_number",
+      "type": "string",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "last_digits_card_number",
+      "type": "string",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "wallet_type",
+      "type": "string",
+      "description": "The digital wallet type that the user paid with",
+      "format": ""
+    },
+    {
+      "name": "agreement_payment_type",
+      "type": "string",
+      "description": "When a standing order agreement transaction is initiated we have to include an initiated reason attribute.This can have a value of `instalment`, `recurring`, or `unscheduled`.We must have a `set_up_agreement` property or you set `authorisation_mode` to `agreement` for the API to accept the AgreementPaymentType.",
+      "format": ""
+    },
+    {
+      "name": "amount",
+      "type": "integer",
+      "description": "Sets the amount the user will pay, in pence.",
+      "format": "int32"
+    },
+    {
+      "name": "authorisation_mode",
+      "type": "string",
+      "description": "Sets how you intend to authorise the payment. Defaults to `web`. Payments created with `web` mode follow the [standard GOV.UK Pay payment journey](https://docs.payments.service.gov.uk/payment_flow/). Paying users visit the `next_url` in the response to complete their payment. Payments created with `agreement` mode are authorised with an agreement for recurring payments. If you create an `agreement` payment, you must also send an active `agreement_id`. You must not send `return_url`, `email`, or `prefilled_cardholder_details` or your request will fail. Payments created with `moto_api` mode return an `auth_url_post` object and a `one_time_token`. You can use `auth_url_post` and `one_time_token` to send the paying user\u2019s card details through the API and complete the payment. If you create a `moto_api` payment, do not send a `return_url` in your request.",
+      "format": ""
+    },
+    {
+      "name": "delayed_capture",
+      "type": "boolean",
+      "description": "You can use this parameter to [delay taking a payment from the paying user\u2019s bank account](https://docs.payments.service.gov.uk/delayed_capture/#delay-taking-a-payment). For example, you might want to do your own anti-fraud checks on payments, or check that users are eligible for your service. Defaults to `false`.",
+      "format": ""
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "description": "email",
+      "format": ""
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "description": "[Sets the language of the user\u2019s payment page](https://docs.payments.service.gov.uk/optional_features/welsh_language) with an ISO-6391 Alpha-2 code of a supported language.",
+      "format": ""
+    },
+    {
+      "name": "metadata",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "moto",
+      "type": "boolean",
+      "description": "You can use this parameter to [designate a payment as a Mail Order / Telephone Order (MOTO) payment](https://docs.payments.service.gov.uk/moto_payments).",
+      "format": ""
+    },
+    {
+      "name": "prefilled_cardholder_details",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "return_url",
+      "type": "string",
+      "description": "The URL [the paying user is directed to after their payment journey on GOV.UK Pay ends](https://docs.payments.service.gov.uk/making_payments/#choose-the-return-url-and-match-your-users-to-payments).",
+      "format": ""
+    },
+    {
+      "name": "set_up_agreement",
+      "type": "string",
+      "description": "Use this parameter to set up an existing agreement for recurring payments. The `set_up_agreement` value you send must be a valid `agreement_id`.",
+      "format": ""
+    },
+    {
+      "name": "card_details",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "payment_id",
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this payment when you created it.",
+      "format": ""
+    },
+    {
+      "name": "payment_provider",
+      "type": "string",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "provider_id",
+      "type": "string",
+      "description": "The reference number your payment service provider associated with the payment.",
+      "format": ""
+    },
+    {
+      "name": "refund_summary",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "settlement_summary",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "state",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "dispute_id",
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this dispute when the paying user disputed the payment.",
+      "format": ""
+    },
+    {
+      "name": "evidence_due_date",
+      "type": "string",
+      "description": "The deadline for submitting your supporting evidence. This value uses Coordinated Universal Time (UTC) and ISO 8601 format",
+      "format": ""
+    },
+    {
+      "name": "fee",
+      "type": "integer",
+      "description": "The payment service provider\u2019s dispute fee, in pence.",
+      "format": "int64"
+    },
+    {
+      "name": "net_amount",
+      "type": "integer",
+      "description": "The amount, in pence, your payment service provider will take for a lost dispute. 'net_amount' is deducted from your payout after you lose the dispute. For example, a 'net_amount' of '-1500' means your PSP will take \u00a315.00 from your next payout into your bank account. 'net_amount' is always a negative value. 'net_amount' only appears if you lose the dispute.",
+      "format": "int64"
+    },
+    {
+      "name": "reason",
+      "type": "string",
+      "description": "The reason the paying user gave for disputing this payment. Possible values are: 'credit_not_processed', 'duplicate', 'fraudulent', 'general', 'product_not_received', 'product_unacceptable', 'unrecognised', 'subscription_cancelled', >'other'",
+      "format": ""
+    },
+    {
+      "name": "payment",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "links",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "refunds",
+      "type": "array",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "code",
+      "type": "string",
+      "description": "A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).",
+      "format": ""
+    },
+    {
+      "name": "outcome",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "requested",
+      "type": "boolean",
+      "description": "Indicates whether an exemption was requested for the given payment.",
+      "format": ""
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "description": "Indicates the type of exemption. Only present for corporate exemption",
+      "format": ""
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "description": "A URL that lets you perform additional actions to this payment when combined with the associated `method`.",
+      "format": ""
+    },
+    {
+      "name": "method",
+      "type": "string",
+      "description": "An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.",
+      "format": ""
+    },
+    {
+      "name": "result",
+      "type": "string",
+      "description": "The outcome of the requested exemption",
+      "format": ""
+    },
+    {
+      "name": "authorisation_summary",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "corporate_card_surcharge",
+      "type": "integer",
+      "description": "The [corporate card surcharge](https://docs.payments.service.gov.uk/corporate_card_surcharges/#add-corporate-card-fees) amount in pence.",
+      "format": "int64"
+    },
+    {
+      "name": "exemption",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "total_amount",
+      "type": "integer",
+      "description": "Amount your user paid in pence, including corporate card fees. `total_amount` only appears if you [added a corporate card surcharge to the payment](https://docs.payments.service.gov.uk/corporate_card_surcharges/#add-corporate-card-fees).",
+      "format": "int64"
+    },
+    {
+      "name": "updated",
+      "type": "string",
+      "description": "When this payment\u2019s state changed. This value uses Coordinated Universal Time (UTC) and ISO-8601 format - `YYYY-MM-DDThh:mm:ss.SSSZ`.",
+      "format": ""
+    },
+    {
+      "name": "payment_url",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "events",
+      "type": "array",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "CardDetails",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "auth_url_post",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "cancel",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "capture",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "next_url",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "next_url_post",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "self",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "refund_amount_available",
+      "type": "integer",
+      "description": "Amount in pence. Total amount still available before issuing the refund",
+      "format": "int32"
+    },
+    {
+      "name": "capture_submit_time",
+      "type": "string",
+      "description": "The date and time GOV.UK Pay asked your payment service provider to take the payment from your user\u2019s account. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ss.SSSZ`",
+      "format": ""
+    },
+    {
+      "name": "captured_date",
+      "type": "string",
+      "description": "The date your payment service provider took the payment from your user. This value uses ISO 8601 format - `YYYY-MM-DD`",
+      "format": ""
+    },
+    {
+      "name": "settled_date",
+      "type": "string",
+      "description": "The date that the transaction was paid into the service's account.",
+      "format": ""
+    },
+    {
+      "name": "can_retry",
+      "type": "boolean",
+      "description": "If `can_retry` is `true`, you can use this agreement to try to take another recurring payment. If `can_retry` is `false`, you cannot take another recurring payment with this agreement. `can_retry` only appears on failed payments that were attempted using an agreement for recurring payments.",
+      "format": ""
+    },
+    {
+      "name": "finished",
+      "type": "boolean",
+      "description": "Indicates whether a payment journey is finished.",
+      "format": ""
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "description": "A description of what went wrong with this payment. `message` only appears if the payment failed.",
+      "format": ""
+    },
+    {
+      "name": "params",
+      "type": "object",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "refund_id",
+      "type": "string",
+      "description": "The unique ID GOV.UK Pay automatically associated with this refund when you created it.",
+      "format": ""
+    },
+    {
+      "name": "_embedded",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "amount_available",
+      "type": "integer",
+      "description": "How much you can refund to the user, in pence.",
+      "format": "int64"
+    },
+    {
+      "name": "amount_submitted",
+      "type": "integer",
+      "description": "How much you\u2019ve already refunded to the user, in pence.",
+      "format": "int64"
+    },
+    {
+      "name": "field",
+      "type": "string",
+      "description": "The parameter in your request that's causing the error.",
+      "format": ""
+    },
+    {
+      "name": "header",
+      "type": "string",
+      "description": "The header in your request that's causing the error.",
+      "format": ""
+    },
+    {
+      "name": "first_page",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "last_page",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "next_page",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "prev_page",
+      "type": "",
+      "description": "",
+      "format": ""
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "description": "Indicates if this payment was authorised with 3D Secure authentication. `required` is `true` if the payment required 3D Secure authentication.",
+      "format": ""
+    }
+  ]
+}

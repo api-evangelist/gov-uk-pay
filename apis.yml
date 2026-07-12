@@ -58,3 +58,10 @@ maintainers:
   - FN: Government Digital Service
     url: https://www.gov.uk/government/organisations/government-digital-service
     email: govuk-pay-support@digital.cabinet-office.gov.uk
+common:
+- type: TrustCenter
+  url: security/gov-uk-pay-trust-center.yml
+- type: DomainSecurity
+  url: security/gov-uk-pay-domain-security.yml
+- type: Authentication
+  url: authentication/gov-uk-pay-authentication.yml

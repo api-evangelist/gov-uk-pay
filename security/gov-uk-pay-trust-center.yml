@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://docs.payments.service.gov.uk/security/
+url: https://docs.payments.service.gov.uk/security/
+certifications:
+- PCI DSS
+evidence:
+- source: https://docs.payments.service.gov.uk/security/
+  keywords:
+  - pci dss
+  - pci-dss

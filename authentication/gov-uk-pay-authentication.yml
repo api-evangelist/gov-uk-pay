@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: 'GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750).
+    You need to use an `"Authorization"` HTTP header to provide your API key, with a `"Bearer"`
+    prefix. For example: `Authorization: Bearer {YOUR_API_KEY_HERE}`'
+  sources:
+  - openapi/openapi.json

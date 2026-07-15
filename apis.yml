@@ -59,6 +59,8 @@ maintainers:
     url: https://www.gov.uk/government/organisations/government-digital-service
     email: govuk-pay-support@digital.cabinet-office.gov.uk
 common:
+- type: AgenticAccess
+  url: agentic-access/gov-uk-pay-agentic-access.yml
 - type: TrustCenter
   url: security/gov-uk-pay-trust-center.yml
 - type: DomainSecurity

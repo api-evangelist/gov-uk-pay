@@ -1,5 +1,18 @@
 name: GOV.UK Pay
 description: UK government digital payment service providing a REST API for accepting card payments, managing payment links, and processing refunds for government digital services. Built and operated by the Government Digital Service (GDS), GOV.UK Pay enables over 1,500 public sector organisations to take payments securely without managing their own PCI DSS compliance.
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.payments.service.gov.uk/assets/images/govuk-pay-logo.png
 tags:
   - Payments
@@ -16,44 +29,158 @@ modified: "2026-06-13"
 url: https://github.com/api-evangelist/gov-uk-pay/blob/main/apis.yml
 specificationVersion: "0.19"
 apis:
-  - name: GOV.UK Pay API
-    description: REST API for accepting card payments, issuing refunds, managing recurring payment agreements, and retrieving payment data for UK public sector organisations.
-    humanURL: https://docs.payments.service.gov.uk/
-    baseURL: https://publicapi.payments.service.gov.uk/
-    tags:
-      - Payments
-      - Refunds
-      - Recurring Payments
-      - Disputes
-      - MOTO
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://docs.payments.service.gov.uk/
-      - type: OpenAPI
-        url: https://github.com/alphagov/pay-publicapi/blob/master/openapi/publicapi_spec.json
-      - type: Authentication
-        url: https://docs.payments.service.gov.uk/api_reference/#authentication
-      - type: Webhooks
-        url: https://docs.payments.service.gov.uk/webhooks/
-      - type: RateLimits
-        url: rate-limits/rate-limits.yml
-      - type: Plans
-        url: plans/plans.yml
-      - type: FinOps
-        url: finops/finops.yml
-      - type: GitHubRepository
-        url: https://github.com/alphagov/pay-publicapi
-      - type: StatusPage
-        url: https://payments.statuspage.io/
-      - type: TermsOfService
-        url: https://www.payments.service.gov.uk/terms/
-      - type: PrivacyPolicy
-        url: https://www.payments.service.gov.uk/privacy/
-    contact:
-      - FN: GOV.UK Pay Support
-        url: https://www.payments.service.gov.uk/support/
-        email: govuk-pay-support@digital.cabinet-office.gov.uk
+- aid: gov-uk-pay:gov-uk-pay-agreements-api
+  name: GOV.UK Pay Agreements API
+  description: The Agreements API from GOV.UK Pay — 3 operation(s) for agreements.
+  humanURL: https://docs.payments.service.gov.uk/
+  baseURL: https://publicapi.payments.service.gov.uk/
+  tags:
+  - Agreements
+  properties:
+  - type: OpenAPI
+    url: openapi/gov-uk-pay-agreements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.payments.service.gov.uk/
+  - type: Authentication
+    url: https://docs.payments.service.gov.uk/api_reference/#authentication
+  - type: Webhooks
+    url: https://docs.payments.service.gov.uk/webhooks/
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: Plans
+    url: plans/plans.yml
+  - type: FinOps
+    url: finops/finops.yml
+  - type: GitHubRepository
+    url: https://github.com/alphagov/pay-publicapi
+  - type: StatusPage
+    url: https://payments.statuspage.io/
+  - type: TermsOfService
+    url: https://www.payments.service.gov.uk/terms/
+  - type: PrivacyPolicy
+    url: https://www.payments.service.gov.uk/privacy/
+- aid: gov-uk-pay:gov-uk-pay-authorise-card-payments-api
+  name: GOV.UK Pay Authorise card payments API
+  description: >-
+    The Authorise card payments API from GOV.UK Pay — 1 operation(s) for authorise card payments.
+  humanURL: https://docs.payments.service.gov.uk/
+  baseURL: https://publicapi.payments.service.gov.uk/
+  tags:
+  - Authorise card payments
+  properties:
+  - type: OpenAPI
+    url: openapi/gov-uk-pay-authorise-card-payments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.payments.service.gov.uk/
+  - type: Authentication
+    url: https://docs.payments.service.gov.uk/api_reference/#authentication
+  - type: Webhooks
+    url: https://docs.payments.service.gov.uk/webhooks/
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: Plans
+    url: plans/plans.yml
+  - type: FinOps
+    url: finops/finops.yml
+  - type: GitHubRepository
+    url: https://github.com/alphagov/pay-publicapi
+  - type: StatusPage
+    url: https://payments.statuspage.io/
+  - type: TermsOfService
+    url: https://www.payments.service.gov.uk/terms/
+  - type: PrivacyPolicy
+    url: https://www.payments.service.gov.uk/privacy/
+- aid: gov-uk-pay:gov-uk-pay-card-payments-api
+  name: GOV.UK Pay Card payments API
+  description: The Card payments API from GOV.UK Pay — 5 operation(s) for card payments.
+  humanURL: https://docs.payments.service.gov.uk/
+  baseURL: https://publicapi.payments.service.gov.uk/
+  tags:
+  - Card payments
+  properties:
+  - type: OpenAPI
+    url: openapi/gov-uk-pay-card-payments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.payments.service.gov.uk/
+  - type: Authentication
+    url: https://docs.payments.service.gov.uk/api_reference/#authentication
+  - type: Webhooks
+    url: https://docs.payments.service.gov.uk/webhooks/
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: Plans
+    url: plans/plans.yml
+  - type: FinOps
+    url: finops/finops.yml
+  - type: GitHubRepository
+    url: https://github.com/alphagov/pay-publicapi
+  - type: StatusPage
+    url: https://payments.statuspage.io/
+  - type: TermsOfService
+    url: https://www.payments.service.gov.uk/terms/
+  - type: PrivacyPolicy
+    url: https://www.payments.service.gov.uk/privacy/
+- aid: gov-uk-pay:gov-uk-pay-disputes-api
+  name: GOV.UK Pay Disputes API
+  description: The Disputes API from GOV.UK Pay — 1 operation(s) for disputes.
+  humanURL: https://docs.payments.service.gov.uk/
+  baseURL: https://publicapi.payments.service.gov.uk/
+  tags:
+  - Disputes
+  properties:
+  - type: OpenAPI
+    url: openapi/gov-uk-pay-disputes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.payments.service.gov.uk/
+  - type: Authentication
+    url: https://docs.payments.service.gov.uk/api_reference/#authentication
+  - type: Webhooks
+    url: https://docs.payments.service.gov.uk/webhooks/
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: Plans
+    url: plans/plans.yml
+  - type: FinOps
+    url: finops/finops.yml
+  - type: GitHubRepository
+    url: https://github.com/alphagov/pay-publicapi
+  - type: StatusPage
+    url: https://payments.statuspage.io/
+  - type: TermsOfService
+    url: https://www.payments.service.gov.uk/terms/
+  - type: PrivacyPolicy
+    url: https://www.payments.service.gov.uk/privacy/
+- aid: gov-uk-pay:gov-uk-pay-refunding-card-payments-api
+  name: GOV.UK Pay Refunding card payments API
+  description: >-
+    The Refunding card payments API from GOV.UK Pay — 3 operation(s) for refunding card payments.
+  humanURL: https://docs.payments.service.gov.uk/
+  baseURL: https://publicapi.payments.service.gov.uk/
+  tags:
+  - Refunding card payments
+  properties:
+  - type: OpenAPI
+    url: openapi/gov-uk-pay-refunding-card-payments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.payments.service.gov.uk/
+  - type: Authentication
+    url: https://docs.payments.service.gov.uk/api_reference/#authentication
+  - type: Webhooks
+    url: https://docs.payments.service.gov.uk/webhooks/
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: Plans
+    url: plans/plans.yml
+  - type: FinOps
+    url: finops/finops.yml
+  - type: GitHubRepository
+    url: https://github.com/alphagov/pay-publicapi
+  - type: StatusPage
+    url: https://payments.statuspage.io/
+  - type: TermsOfService
+    url: https://www.payments.service.gov.uk/terms/
+  - type: PrivacyPolicy
+    url: https://www.payments.service.gov.uk/privacy/
 maintainers:
   - FN: Government Digital Service
     url: https://www.gov.uk/government/organisations/government-digital-service

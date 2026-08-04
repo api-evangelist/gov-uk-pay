@@ -1,0 +1,22 @@
+{
+  "provider": "gov-uk-pay",
+  "sources": [
+    "gov-uk-pay-agreements-api-openapi.yml",
+    "gov-uk-pay-authorise-card-payments-api-openapi.yml",
+    "gov-uk-pay-card-payments-api-openapi.yml",
+    "gov-uk-pay-disputes-api-openapi.yml",
+    "gov-uk-pay-refunding-card-payments-api-openapi.yml"
+  ],
+  "outputs": [
+    "gov-uk-pay-agreements-api-openapi.yml",
+    "gov-uk-pay-authorise-card-payments-api-openapi.yml",
+    "gov-uk-pay-card-payments-api-openapi.yml",
+    "gov-uk-pay-disputes-api-openapi.yml",
+    "gov-uk-pay-refunding-card-payments-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

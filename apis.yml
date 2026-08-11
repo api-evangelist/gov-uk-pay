@@ -186,6 +186,17 @@ maintainers:
     url: https://www.gov.uk/government/organisations/government-digital-service
     email: govuk-pay-support@digital.cabinet-office.gov.uk
 common:
+- type: IssueTracker
+  url: https://github.com/alphagov/pay-publicapi/issues
+- type: Releases
+  url: https://github.com/alphagov/pay-publicapi/releases
+- type: CodeOfConduct
+  url: https://github.com/alphagov/.github/blob/main/CODE_OF_CONDUCT.md
+- type: ContributionGuide
+  url: https://github.com/alphagov/pay-publicapi/blob/master/CONTRIBUTING.md
+- type: License
+  name: MIT
+  url: https://github.com/alphagov/pay-publicapi/blob/master/LICENSE
 - type: AgenticAccess
   url: agentic-access/gov-uk-pay-agentic-access.yml
 - type: TrustCenter

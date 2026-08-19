@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GOV.UK Pay Agreements Authorise card payments API",
+    "version": "1.0.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorise card payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send card details to authorise a MOTO payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.payments.service.gov.uk/v1/auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can use this endpoint to [authorise payments](https://docs.payments.service.gov.uk/moto_payments/moto_send_card_details_api/) you have created with `authorisation_mode` set to `moto_api`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

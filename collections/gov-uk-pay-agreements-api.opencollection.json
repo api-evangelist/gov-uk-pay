@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GOV.UK Pay Agreements API",
+    "version": "1.0.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agreements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search agreements for recurring payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.payments.service.gov.uk/v1/agreements",
+            "params": [
+              {
+                "name": "reference",
+                "value": "CT-22-23-0001",
+                "type": "query",
+                "description": "Returns agreements with a `reference` that exactly matches the value you sent. This parameter is not case sensitive. A `reference` was associated with the agreement when that agreement was created."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Returns agreements in a matching `status`. `status` reflects where an agreement is in its lifecycle. You can [read more about the meanings of the different agreement status values](https://docs.payments.service.gov.uk/recurring_payments/#understanding-agreement-status)."
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Returns a specific page of results. Defaults to `1`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)"
+              },
+              {
+                "name": "display_size",
+                "value": "50",
+                "type": "query",
+                "description": "The number of agreements returned per results page. Defaults to `500`. Maximum value is `500`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint to search for recurring payments agreements. The agreements are sorted by date, with the most recently-created agreements appearing first."
+        },
+        {
+          "info": {
+            "name": "Create an agreement for recurring payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.payments.service.gov.uk/v1/agreements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint to create a new agreement."
+        },
+        {
+          "info": {
+            "name": "Get information about a single agreement for recurring payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.payments.service.gov.uk/v1/agreements/:agreementId",
+            "params": [
+              {
+                "name": "agreementId",
+                "value": "cgc1ocvh0pt9fqs0ma67r42l58",
+                "type": "path",
+                "description": "Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint to get information about a single recurring payments agreement."
+        },
+        {
+          "info": {
+            "name": "Cancel an agreement for recurring payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.payments.service.gov.uk/v1/agreements/:agreementId/cancel",
+            "params": [
+              {
+                "name": "agreementId",
+                "value": "cgc1ocvh0pt9fqs0ma67r42l58",
+                "type": "path",
+                "description": "The `agreement_id` of the agreement you are cancelling"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint to cancel a recurring payments agreement in the `active` status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

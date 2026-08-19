@@ -1,0 +1,2551 @@
+{
+  "item": [
+    {
+      "id": "631b61bb-7a70-4191-b85e-6d0a88c2d164",
+      "name": "Card payments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78cdcb7d-9d23-4150-8ed4-e624b4bf95b1",
+          "name": "Search payments",
+          "request": {
+            "name": "Search payments",
+            "description": {
+              "content": "You can use this endpoint to [search for payments you’ve previously created](https://docs.payments.service.gov.uk/reporting/#search-payments/). Payments are sorted by date, with the most recently-created payment appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reference",
+                  "value": "<string>",
+                  "description": "Returns payments with `reference` values exactly matching your specified value."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Returns payments with matching `email` values. You can send full or partial email addresses. `email` is the paying user’s email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Returns payments in a matching `state`. `state` reflects where a payment is in the [payment status lifecycle](https://docs.payments.service.gov.uk/api_reference/#payment-status-lifecycle)."
+                },
+                {
+                  "disabled": false,
+                  "key": "card_brand",
+                  "value": "<string>",
+                  "description": "Returns payments paid with a particular card brand."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_date",
+                  "value": "<string>",
+                  "description": "Returns payments created on or after the `from_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`."
+                },
+                {
+                  "disabled": false,
+                  "key": "to_date",
+                  "value": "<string>",
+                  "description": "Returns payments created before the `to_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Returns a [specific page of results](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `1`."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_size",
+                  "value": "<string>",
+                  "description": "The number of payments returned [per results page](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `500`. Maximum value is `500`."
+                },
+                {
+                  "disabled": false,
+                  "key": "cardholder_name",
+                  "value": "<string>",
+                  "description": "Returns payments paid with cards under this cardholder name."
+                },
+                {
+                  "disabled": false,
+                  "key": "first_digits_card_number",
+                  "value": "<string>",
+                  "description": "Returns payments paid by cards beginning with the `first_digits_card_number` value. `first_digits_card_number` value must be 6 digits."
+                },
+                {
+                  "disabled": false,
+                  "key": "last_digits_card_number",
+                  "value": "<string>",
+                  "description": "Returns payments paid by cards ending with the `last_digits_card_number` value. `last_digits_card_number` value must be 4 digits."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_settled_date",
+                  "value": "<string>",
+                  "description": "Returns payments settled on or after the `from_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account."
+                },
+                {
+                  "disabled": false,
+                  "key": "to_settled_date",
+                  "value": "<string>",
+                  "description": "Returns payments settled before the `to_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account."
+                },
+                {
+                  "disabled": false,
+                  "key": "agreement_id",
+                  "value": "<string>",
+                  "description": "Returns payments that were authorised using the agreement with this `agreement_id`. Must be an exact match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0f95bacf-5d10-4f97-8262-a8b0c6a89f1c",
+              "name": "OK - your request was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "success"
+                    },
+                    {
+                      "key": "card_brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cardholder_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agreement_id",
+                      "value": "abcefghjklmnopqr1234567890"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"first_page\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"last_page\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"next_page\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"prev_page\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"self\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    }\n  },\n  \"count\": 20,\n  \"page\": 1,\n  \"results\": [\n    {\n      \"_links\": {\n        \"cancel\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"POST\",\n          \"params\": {\n            \"key_0\": {\n              \"description\": \"This is a value for a parameter called description\"\n            },\n            \"key_1\": {\n              \"description\": \"This is a value for a parameter called description\"\n            }\n          },\n          \"type\": \"application/x-www-form-urlencoded\"\n        },\n        \"capture\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"POST\",\n          \"params\": {\n            \"key_0\": {\n              \"description\": \"This is a value for a parameter called description\"\n            },\n            \"key_1\": {\n              \"description\": \"This is a value for a parameter called description\"\n            },\n            \"key_2\": {\n              \"description\": \"This is a value for a parameter called description\"\n            },\n            \"key_3\": {\n              \"description\": \"This is a value for a parameter called description\"\n            }\n          },\n          \"type\": \"application/x-www-form-urlencoded\"\n        },\n        \"events\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"GET\"\n        },\n        \"refunds\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"GET\"\n        },\n        \"self\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"GET\"\n        }\n      },\n      \"agreement_payment_type\": \"recurring\",\n      \"amount\": 1200,\n      \"authorisation_mode\": \"moto_api\",\n      \"authorisation_summary\": {\n        \"three_d_secure\": {\n          \"required\": true\n        }\n      },\n      \"card_brand\": \"Visa\",\n      \"card_details\": {\n        \"billing_address\": {\n          \"city\": \"address city\",\n          \"country\": \"GB\",\n          \"line1\": \"address line 1\",\n          \"line2\": \"address line 2\",\n          \"postcode\": \"AB1 2CD\"\n        },\n        \"card_brand\": \"Visa\",\n        \"card_type\": \"debit\",\n        \"cardholder_name\": \"Mr. Card holder\",\n        \"expiry_date\": \"04/24\",\n        \"first_digits_card_number\": \"123456\",\n        \"last_digits_card_number\": \"1234\",\n        \"wallet_type\": \"Apple Pay\"\n      },\n      \"corporate_card_surcharge\": 250,\n      \"created_date\": \"2016-01-21T17:15:00.000Z\",\n      \"delayed_capture\": false,\n      \"description\": \"Your Service Description\",\n      \"email\": \"The paying user’s email address.\",\n      \"exemption\": {\n        \"outcome\": {\n          \"result\": \"honoured\"\n        },\n        \"requested\": true,\n        \"type\": \"corporate\"\n      },\n      \"fee\": 5,\n      \"language\": \"en\",\n      \"metadata\": {\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      \"moto\": false,\n      \"net_amount\": 1195,\n      \"payment_id\": \"hu20sqlact5260q2nanm0q8u93\",\n      \"payment_provider\": \"worldpay\",\n      \"provider_id\": \"reference-from-payment-gateway\",\n      \"reference\": \"your-reference\",\n      \"refund_summary\": {\n        \"amount_available\": 100,\n        \"amount_submitted\": 6058,\n        \"status\": \"available\"\n      },\n      \"return_url\": \"http://your.service.domain/your-reference\",\n      \"settlement_summary\": {\n        \"capture_submit_time\": \"2016-01-21T17:15:00.000Z\",\n        \"captured_date\": \"2016-01-21\",\n        \"settled_date\": \"2016-01-21\"\n      },\n      \"state\": {\n        \"can_retry\": false,\n        \"code\": \"P010\",\n        \"finished\": false,\n        \"message\": \"User cancelled the payment\",\n        \"status\": \"created\"\n      },\n      \"total_amount\": 1450\n    },\n    {\n      \"_links\": {\n        \"cancel\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"POST\",\n          \"params\": {\n            \"key_0\": {\n              \"description\": \"This is a value for a parameter called description\"\n            },\n            \"key_1\": {\n              \"description\": \"This is a value for a parameter called description\"\n            }\n          },\n          \"type\": \"application/x-www-form-urlencoded\"\n        },\n        \"capture\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"POST\",\n          \"params\": {\n            \"key_0\": {\n              \"description\": \"This is a value for a parameter called description\"\n            },\n            \"key_1\": {\n              \"description\": \"This is a value for a parameter called description\"\n            },\n            \"key_2\": {\n              \"description\": \"This is a value for a parameter called description\"\n            }\n          },\n          \"type\": \"application/x-www-form-urlencoded\"\n        },\n        \"events\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"GET\"\n        },\n        \"refunds\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"GET\"\n        },\n        \"self\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"GET\"\n        }\n      },\n      \"agreement_payment_type\": \"unscheduled\",\n      \"amount\": 1200,\n      \"authorisation_mode\": \"web\",\n      \"authorisation_summary\": {\n        \"three_d_secure\": {\n          \"required\": false\n        }\n      },\n      \"card_brand\": \"Visa\",\n      \"card_details\": {\n        \"billing_address\": {\n          \"city\": \"address city\",\n          \"country\": \"GB\",\n          \"line1\": \"address line 1\",\n          \"line2\": \"address line 2\",\n          \"postcode\": \"AB1 2CD\"\n        },\n        \"card_brand\": \"Visa\",\n        \"card_type\": \"debit\",\n        \"cardholder_name\": \"Mr. Card holder\",\n        \"expiry_date\": \"04/24\",\n        \"first_digits_card_number\": \"123456\",\n        \"last_digits_card_number\": \"1234\",\n        \"wallet_type\": \"Apple Pay\"\n      },\n      \"corporate_card_surcharge\": 250,\n      \"created_date\": \"2016-01-21T17:15:00.000Z\",\n      \"delayed_capture\": false,\n      \"description\": \"Your Service Description\",\n      \"email\": \"The paying user’s email address.\",\n      \"exemption\": {\n        \"outcome\": {\n          \"result\": \"honoured\"\n        },\n        \"requested\": true,\n        \"type\": \"corporate\"\n      },\n      \"fee\": 5,\n      \"language\": \"en\",\n      \"metadata\": {\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      \"moto\": false,\n      \"net_amount\": 1195,\n      \"payment_id\": \"hu20sqlact5260q2nanm0q8u93\",\n      \"payment_provider\": \"worldpay\",\n      \"provider_id\": \"reference-from-payment-gateway\",\n      \"reference\": \"your-reference\",\n      \"refund_summary\": {\n        \"amount_available\": 100,\n        \"amount_submitted\": 3236,\n        \"status\": \"available\"\n      },\n      \"return_url\": \"http://your.service.domain/your-reference\",\n      \"settlement_summary\": {\n        \"capture_submit_time\": \"2016-01-21T17:15:00.000Z\",\n        \"captured_date\": \"2016-01-21\",\n        \"settled_date\": \"2016-01-21\"\n      },\n      \"state\": {\n        \"can_retry\": true,\n        \"code\": \"P010\",\n        \"finished\": false,\n        \"message\": \"User cancelled the payment\",\n        \"status\": \"created\"\n      },\n      \"total_amount\": 1450\n    }\n  ],\n  \"total\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e893024a-f34c-4990-8e7c-67e07b72829a",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "success"
+                    },
+                    {
+                      "key": "card_brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cardholder_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agreement_id",
+                      "value": "abcefghjklmnopqr1234567890"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "db7f1165-a142-4448-8fcc-29a335ea55bb",
+              "name": "Invalid parameters: from_date, to_date, status, display_size. See Public API documentation for the correct data formats",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "success"
+                    },
+                    {
+                      "key": "card_brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cardholder_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agreement_id",
+                      "value": "abcefghjklmnopqr1234567890"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8551259d-7267-4d8d-b128-0e9efa6c13d6",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "success"
+                    },
+                    {
+                      "key": "card_brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cardholder_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agreement_id",
+                      "value": "abcefghjklmnopqr1234567890"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b31ea2f3-99a8-499b-8a9c-49d58b4f1ffb",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "success"
+                    },
+                    {
+                      "key": "card_brand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "2015-08-13T12:35:00Z"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cardholder_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "first_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "last_digits_card_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to_settled_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agreement_id",
+                      "value": "abcefghjklmnopqr1234567890"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03cb4d4d-8fb4-4e7a-8bba-8794fb546036",
+          "name": "Create a payment",
+          "request": {
+            "name": "Create a payment",
+            "description": {
+              "content": "You can use this endpoint to [create a new payment](https://docs.payments.service.gov.uk/making_payments/).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"return_url\": \"<string>\",\n  \"agreement_id\": \"<string>\",\n  \"agreement_payment_type\": \"<string>\",\n  \"authorisation_mode\": \"<string>\",\n  \"delayed_capture\": \"<boolean>\",\n  \"email\": \"<string>\",\n  \"language\": \"<string>\",\n  \"metadata\": {\n    \"metadata\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  },\n  \"moto\": \"<boolean>\",\n  \"prefilled_cardholder_details\": {\n    \"billing_address\": {\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"postcode\": \"<string>\"\n    },\n    \"cardholder_name\": \"<string>\"\n  },\n  \"set_up_agreement\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78dbdd66-af00-4fc2-82e8-ee9bb1b9eea1",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 12000,\n  \"description\": \"New passport application\",\n  \"reference\": \"12345\",\n  \"return_url\": \"https://service-name.gov.uk/transactions/12345\",\n  \"agreement_id\": \"abcefghjklmnopqr1234567890\",\n  \"agreement_payment_type\": \"<string>\",\n  \"authorisation_mode\": \"<string>\",\n  \"delayed_capture\": false,\n  \"email\": \"Joe.Bogs@example.org\",\n  \"language\": \"en\",\n  \"metadata\": {\n    \"metadata\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  },\n  \"moto\": false,\n  \"prefilled_cardholder_details\": {\n    \"billing_address\": {\n      \"city\": \"address city\",\n      \"country\": \"GB\",\n      \"line1\": \"address line 1\",\n      \"line2\": \"address line 2\",\n      \"postcode\": \"AB1 2CD\"\n    },\n    \"cardholder_name\": \"J. Bogs\"\n  },\n  \"set_up_agreement\": \"abcefghjklmnopqr1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"auth_url_post\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"POST\",\n      \"params\": {\n        \"key_0\": {\n          \"description\": \"This is a value for a parameter called description\"\n        }\n      },\n      \"type\": \"application/x-www-form-urlencoded\"\n    },\n    \"cancel\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"POST\",\n      \"params\": {\n        \"key_0\": {\n          \"description\": \"This is a value for a parameter called description\"\n        }\n      },\n      \"type\": \"application/x-www-form-urlencoded\"\n    },\n    \"capture\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"POST\",\n      \"params\": {\n        \"key_0\": {\n          \"description\": \"This is a value for a parameter called description\"\n        }\n      },\n      \"type\": \"application/x-www-form-urlencoded\"\n    },\n    \"events\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"next_url\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"next_url_post\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"POST\",\n      \"params\": {\n        \"key_0\": {\n          \"description\": \"This is a value for a parameter called description\"\n        },\n        \"key_1\": {\n          \"description\": \"This is a value for a parameter called description\"\n        },\n        \"key_2\": {\n          \"description\": \"This is a value for a parameter called description\"\n        },\n        \"key_3\": {\n          \"description\": \"This is a value for a parameter called description\"\n        },\n        \"key_4\": {\n          \"description\": \"This is a value for a parameter called description\"\n        }\n      },\n      \"type\": \"application/x-www-form-urlencoded\"\n    },\n    \"refunds\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"self\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    }\n  },\n  \"amount\": 1200,\n  \"card_details\": {\n    \"billing_address\": {\n      \"city\": \"address city\",\n      \"country\": \"GB\",\n      \"line1\": \"address line 1\",\n      \"line2\": \"address line 2\",\n      \"postcode\": \"AB1 2CD\"\n    },\n    \"card_brand\": \"string\",\n    \"card_type\": \"string\",\n    \"cardholder_name\": \"string\",\n    \"expiry_date\": \"string\",\n    \"first_digits_card_number\": \"string\",\n    \"last_digits_card_number\": \"string\"\n  },\n  \"created_date\": \"2016-01-21T17:15:00.000Z\",\n  \"delayed_capture\": false,\n  \"description\": \"New passport application\",\n  \"email\": \"citizen@example.org\",\n  \"language\": \"en\",\n  \"metadata\": {\n    \"metadata\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\",\n      \"key_2\": \"<object>\",\n      \"key_3\": \"<object>\"\n    }\n  },\n  \"moto\": false,\n  \"payment_id\": \"hu20sqlact5260q2nanm0q8u93\",\n  \"payment_provider\": \"worldpay\",\n  \"provider_id\": \"null\",\n  \"reference\": \"12345\",\n  \"refund_summary\": {\n    \"amount_available\": 100,\n    \"amount_submitted\": 2616,\n    \"status\": \"available\"\n  },\n  \"return_url\": \"https://service-name.gov.uk/transactions/12345\",\n  \"settlement_summary\": {\n    \"capture_submit_time\": \"2016-01-21T17:15:00.000Z\",\n    \"captured_date\": \"2016-01-21\",\n    \"settled_date\": \"2016-01-21\"\n  },\n  \"state\": {\n    \"can_retry\": false,\n    \"code\": \"P010\",\n    \"finished\": true,\n    \"message\": \"User cancelled the payment\",\n    \"status\": \"created\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af27cbca-fdce-400f-9471-79e880e4b388",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 12000,\n  \"description\": \"New passport application\",\n  \"reference\": \"12345\",\n  \"return_url\": \"https://service-name.gov.uk/transactions/12345\",\n  \"agreement_id\": \"abcefghjklmnopqr1234567890\",\n  \"agreement_payment_type\": \"<string>\",\n  \"authorisation_mode\": \"<string>\",\n  \"delayed_capture\": false,\n  \"email\": \"Joe.Bogs@example.org\",\n  \"language\": \"en\",\n  \"metadata\": {\n    \"metadata\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  },\n  \"moto\": false,\n  \"prefilled_cardholder_details\": {\n    \"billing_address\": {\n      \"city\": \"address city\",\n      \"country\": \"GB\",\n      \"line1\": \"address line 1\",\n      \"line2\": \"address line 2\",\n      \"postcode\": \"AB1 2CD\"\n    },\n    \"cardholder_name\": \"J. Bogs\"\n  },\n  \"set_up_agreement\": \"abcefghjklmnopqr1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4473ad9a-6e2b-40c5-884e-41a94eafaa2d",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 12000,\n  \"description\": \"New passport application\",\n  \"reference\": \"12345\",\n  \"return_url\": \"https://service-name.gov.uk/transactions/12345\",\n  \"agreement_id\": \"abcefghjklmnopqr1234567890\",\n  \"agreement_payment_type\": \"<string>\",\n  \"authorisation_mode\": \"<string>\",\n  \"delayed_capture\": false,\n  \"email\": \"Joe.Bogs@example.org\",\n  \"language\": \"en\",\n  \"metadata\": {\n    \"metadata\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  },\n  \"moto\": false,\n  \"prefilled_cardholder_details\": {\n    \"billing_address\": {\n      \"city\": \"address city\",\n      \"country\": \"GB\",\n      \"line1\": \"address line 1\",\n      \"line2\": \"address line 2\",\n      \"postcode\": \"AB1 2CD\"\n    },\n    \"cardholder_name\": \"J. Bogs\"\n  },\n  \"set_up_agreement\": \"abcefghjklmnopqr1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6cc8e7e2-c349-4e29-b283-cf78d4c46065",
+              "name": "Your request failed. Check the `code` and `description` in the response to find out why your request failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 12000,\n  \"description\": \"New passport application\",\n  \"reference\": \"12345\",\n  \"return_url\": \"https://service-name.gov.uk/transactions/12345\",\n  \"agreement_id\": \"abcefghjklmnopqr1234567890\",\n  \"agreement_payment_type\": \"<string>\",\n  \"authorisation_mode\": \"<string>\",\n  \"delayed_capture\": false,\n  \"email\": \"Joe.Bogs@example.org\",\n  \"language\": \"en\",\n  \"metadata\": {\n    \"metadata\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  },\n  \"moto\": false,\n  \"prefilled_cardholder_details\": {\n    \"billing_address\": {\n      \"city\": \"address city\",\n      \"country\": \"GB\",\n      \"line1\": \"address line 1\",\n      \"line2\": \"address line 2\",\n      \"postcode\": \"AB1 2CD\"\n    },\n    \"cardholder_name\": \"J. Bogs\"\n  },\n  \"set_up_agreement\": \"abcefghjklmnopqr1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76456749-67ba-40ca-b1ca-7e69db95ad95",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 12000,\n  \"description\": \"New passport application\",\n  \"reference\": \"12345\",\n  \"return_url\": \"https://service-name.gov.uk/transactions/12345\",\n  \"agreement_id\": \"abcefghjklmnopqr1234567890\",\n  \"agreement_payment_type\": \"<string>\",\n  \"authorisation_mode\": \"<string>\",\n  \"delayed_capture\": false,\n  \"email\": \"Joe.Bogs@example.org\",\n  \"language\": \"en\",\n  \"metadata\": {\n    \"metadata\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  },\n  \"moto\": false,\n  \"prefilled_cardholder_details\": {\n    \"billing_address\": {\n      \"city\": \"address city\",\n      \"country\": \"GB\",\n      \"line1\": \"address line 1\",\n      \"line2\": \"address line 2\",\n      \"postcode\": \"AB1 2CD\"\n    },\n    \"cardholder_name\": \"J. Bogs\"\n  },\n  \"set_up_agreement\": \"abcefghjklmnopqr1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42cfde06-ec73-4f54-b45a-7f75100ca092",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 12000,\n  \"description\": \"New passport application\",\n  \"reference\": \"12345\",\n  \"return_url\": \"https://service-name.gov.uk/transactions/12345\",\n  \"agreement_id\": \"abcefghjklmnopqr1234567890\",\n  \"agreement_payment_type\": \"<string>\",\n  \"authorisation_mode\": \"<string>\",\n  \"delayed_capture\": false,\n  \"email\": \"Joe.Bogs@example.org\",\n  \"language\": \"en\",\n  \"metadata\": {\n    \"metadata\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  },\n  \"moto\": false,\n  \"prefilled_cardholder_details\": {\n    \"billing_address\": {\n      \"city\": \"address city\",\n      \"country\": \"GB\",\n      \"line1\": \"address line 1\",\n      \"line2\": \"address line 2\",\n      \"postcode\": \"AB1 2CD\"\n    },\n    \"cardholder_name\": \"J. Bogs\"\n  },\n  \"set_up_agreement\": \"abcefghjklmnopqr1234567890\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0a18324-c964-4eee-ab75-a97040d0438e",
+          "name": "Get information about a single payment",
+          "request": {
+            "name": "Get information about a single payment",
+            "description": {
+              "content": "You can use this endpoint to [get details about a single payment you’ve previously created](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":paymentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) Returns the payment with the matching `payment_id`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75a461f4-ba6c-4f41-9d1f-485771bb83db",
+              "name": "OK - your request was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Returns the payment with the matching `payment_id`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"auth_url_post\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"POST\",\n      \"params\": {\n        \"key_0\": {\n          \"description\": \"This is a value for a parameter called description\"\n        }\n      },\n      \"type\": \"application/x-www-form-urlencoded\"\n    },\n    \"cancel\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"POST\",\n      \"params\": {\n        \"key_0\": {\n          \"description\": \"This is a value for a parameter called description\"\n        }\n      },\n      \"type\": \"application/x-www-form-urlencoded\"\n    },\n    \"capture\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"POST\",\n      \"params\": {\n        \"key_0\": {\n          \"description\": \"This is a value for a parameter called description\"\n        },\n        \"key_1\": {\n          \"description\": \"This is a value for a parameter called description\"\n        }\n      },\n      \"type\": \"application/x-www-form-urlencoded\"\n    },\n    \"events\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"next_url\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"next_url_post\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"POST\",\n      \"params\": {\n        \"key_0\": {\n          \"description\": \"This is a value for a parameter called description\"\n        }\n      },\n      \"type\": \"application/x-www-form-urlencoded\"\n    },\n    \"refunds\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"self\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    }\n  },\n  \"agreement_payment_type\": \"unscheduled\",\n  \"amount\": 1200,\n  \"authorisation_mode\": \"external\",\n  \"authorisation_summary\": {\n    \"three_d_secure\": {\n      \"required\": false\n    }\n  },\n  \"card_brand\": \"Visa\",\n  \"card_details\": {\n    \"billing_address\": {\n      \"city\": \"address city\",\n      \"country\": \"GB\",\n      \"line1\": \"address line 1\",\n      \"line2\": \"address line 2\",\n      \"postcode\": \"AB1 2CD\"\n    },\n    \"card_brand\": \"Visa\",\n    \"card_type\": \"debit\",\n    \"cardholder_name\": \"Mr. Card holder\",\n    \"expiry_date\": \"04/24\",\n    \"first_digits_card_number\": \"123456\",\n    \"last_digits_card_number\": \"1234\",\n    \"wallet_type\": \"Apple Pay\"\n  },\n  \"corporate_card_surcharge\": 250,\n  \"created_date\": \"2016-01-21T17:15:00.000Z\",\n  \"delayed_capture\": false,\n  \"description\": \"Your Service Description\",\n  \"email\": \"The paying user’s email address.\",\n  \"exemption\": {\n    \"outcome\": {\n      \"result\": \"honoured\"\n    },\n    \"requested\": true,\n    \"type\": \"corporate\"\n  },\n  \"fee\": 5,\n  \"language\": \"en\",\n  \"metadata\": {\n    \"metadata\": {\n      \"key_0\": \"<object>\"\n    }\n  },\n  \"moto\": false,\n  \"net_amount\": 1195,\n  \"payment_id\": \"hu20sqlact5260q2nanm0q8u93\",\n  \"payment_provider\": \"worldpay\",\n  \"provider_id\": \"reference-from-payment-gateway\",\n  \"reference\": \"your-reference\",\n  \"refund_summary\": {\n    \"amount_available\": 100,\n    \"amount_submitted\": 2452,\n    \"status\": \"available\"\n  },\n  \"return_url\": \"http://your.service.domain/your-reference\",\n  \"settlement_summary\": {\n    \"capture_submit_time\": \"2016-01-21T17:15:00.000Z\",\n    \"captured_date\": \"2016-01-21\",\n    \"settled_date\": \"2016-01-21\"\n  },\n  \"state\": {\n    \"can_retry\": true,\n    \"code\": \"P010\",\n    \"finished\": false,\n    \"message\": \"User cancelled the payment\",\n    \"status\": \"created\"\n  },\n  \"total_amount\": 1450\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a683338-1a01-455d-99ac-fc7337ec71e2",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Returns the payment with the matching `payment_id`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c078ec8b-1708-4687-8be7-8b0cad5d43a9",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Returns the payment with the matching `payment_id`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bce958c-76bc-4949-bc83-35da77f86f98",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Returns the payment with the matching `payment_id`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7e7c12d-d2f4-433a-8347-2987562499a7",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Returns the payment with the matching `payment_id`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47ba07ec-c417-4bfb-abe2-01e89c1b9a31",
+          "name": "Cancel payment",
+          "request": {
+            "name": "Cancel payment",
+            "description": {
+              "content": "You can use this endpoint [to cancel an unfinished payment](https://docs.payments.service.gov.uk/making_payments/#cancel-a-payment-that-s-in-progress).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":paymentId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) The `payment_id` of the payment you’re cancelling."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1f9be861-b658-4af4-8c1e-be5f00377ca2",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re cancelling."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "17447ae8-f289-4f3f-9844-d6ecba5dc49d",
+              "name": "Cancellation of payment failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re cancelling."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bf87411-86b6-4eda-b560-20a13906c1c7",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re cancelling."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d66321d7-154e-4955-a8e3-1444b03da423",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re cancelling."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca240bad-9347-4c36-b3ff-4b2c2bb096f7",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re cancelling."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1453067-fbba-4c50-95d9-722bb486b2e6",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re cancelling."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44555606-355f-4aac-8495-a753355bb491",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re cancelling."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dd52c94-df56-406f-be94-888991bfc0fa",
+          "name": "Take a delayed payment",
+          "request": {
+            "name": "Take a delayed payment",
+            "description": {
+              "content": "You can use this endpoint to [take (‘capture’) a delayed payment from the paying user’s bank account](https://docs.payments.service.gov.uk/delayed_capture/).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":paymentId",
+                "capture"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) The `payment_id` of the payment you’re capturing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a1023597-028b-4408-8ca4-1d2ce38d4ca9",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re capturing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5cddc83b-079a-4a39-b3f6-692532690d6a",
+              "name": "Capture of payment failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re capturing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "604631ed-8b8d-4d41-8b6b-366c94a33eb8",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re capturing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71031ec8-7ea1-4f29-b9c1-0f5e52206067",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re capturing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f202bc2b-2824-47ea-a719-e7e91acb5e2d",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re capturing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d24e3be-d390-4940-bfa9-4c62ac58601c",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re capturing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "503e2a0a-66ff-46b5-93de-dc431f04fda0",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) The `payment_id` of the payment you’re capturing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d08cb15-ae43-49d2-86f6-5ea6ad7c1019",
+          "name": "Get a payment's events",
+          "request": {
+            "name": "Get a payment's events",
+            "description": {
+              "content": "You can use this endpoint to [get a list of a payment’s events](https://docs.payments.service.gov.uk/reporting/#get-a-payment-s-events). A payment event is when a payment’s `state` changes, such as when the payment is created, or when the paying user submits their details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":paymentId",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentId",
+                  "description": "(Required) Payment identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c389c0ad-eec9-42d6-b1da-cfdd49993471",
+              "name": "OK - your request was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    }\n  },\n  \"events\": [\n    {\n      \"_links\": {\n        \"payment_url\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"GET\"\n        }\n      },\n      \"payment_id\": \"hu20sqlact5260q2nanm0q8u93\",\n      \"state\": {\n        \"can_retry\": false,\n        \"code\": \"P010\",\n        \"finished\": true,\n        \"message\": \"User cancelled the payment\",\n        \"status\": \"created\"\n      },\n      \"updated\": \"2017-01-10T16:44:48.646Z\"\n    },\n    {\n      \"_links\": {\n        \"payment_url\": {\n          \"href\": \"https://an.example.link/from/payment/platform\",\n          \"method\": \"GET\"\n        }\n      },\n      \"payment_id\": \"hu20sqlact5260q2nanm0q8u93\",\n      \"state\": {\n        \"can_retry\": false,\n        \"code\": \"P010\",\n        \"finished\": false,\n        \"message\": \"User cancelled the payment\",\n        \"status\": \"created\"\n      },\n      \"updated\": \"2017-01-10T16:44:48.646Z\"\n    }\n  ],\n  \"payment_id\": \"hu20sqlact5260q2nanm0q8u93\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5077f6a1-99b1-48b1-8b63-38afc6ca946c",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e90f04cb-a596-4b71-bd92-a51aef342621",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "218a4c1b-0978-492c-8c84-de19968b853f",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5199ca6-983e-44b8-bff0-2d19be45bf23",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":paymentId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentId",
+                      "description": "(Required) Payment identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://publicapi.payments.service.gov.uk",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d5a2a5a5-26ca-4ee9-97fd-45829736d764",
+    "name": "GOV.UK Pay Agreements Card payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The GOV.UK Pay REST API. Read [our documentation](https://docs.payments.service.gov.uk/) for more details.",
+      "type": "text/plain"
+    }
+  }
+}

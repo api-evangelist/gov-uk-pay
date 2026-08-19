@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GOV.UK Pay Agreements Card payments API",
+    "version": "1.0.3"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Card payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.payments.service.gov.uk/v1/payments",
+            "params": [
+              {
+                "name": "reference",
+                "value": "",
+                "type": "query",
+                "description": "Returns payments with `reference` values exactly matching your specified value."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Returns payments with matching `email` values. You can send full or partial email addresses. `email` is the paying user’s email address."
+              },
+              {
+                "name": "state",
+                "value": "success",
+                "type": "query",
+                "description": "Returns payments in a matching `state`. `state` reflects where a payment is in the [payment status lifecycle](https://docs.payments.service.gov.uk/api_reference/#payment-status-lifecycle)."
+              },
+              {
+                "name": "card_brand",
+                "value": "",
+                "type": "query",
+                "description": "Returns payments paid with a particular card brand."
+              },
+              {
+                "name": "from_date",
+                "value": "2015-08-13T12:35:00Z",
+                "type": "query",
+                "description": "Returns payments created on or after the `from_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`."
+              },
+              {
+                "name": "to_date",
+                "value": "2015-08-13T12:35:00Z",
+                "type": "query",
+                "description": "Returns payments created before the `to_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Returns a [specific page of results](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `1`."
+              },
+              {
+                "name": "display_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of payments returned [per results page](https://docs.payments.service.gov.uk/api_reference/#pagination). Defaults to `500`. Maximum value is `500`."
+              },
+              {
+                "name": "cardholder_name",
+                "value": "",
+                "type": "query",
+                "description": "Returns payments paid with cards under this cardholder name."
+              },
+              {
+                "name": "first_digits_card_number",
+                "value": "",
+                "type": "query",
+                "description": "Returns payments paid by cards beginning with the `first_digits_card_number` value. `first_digits_card_number` value must be 6 digits."
+              },
+              {
+                "name": "last_digits_card_number",
+                "value": "",
+                "type": "query",
+                "description": "Returns payments paid by cards ending with the `last_digits_card_number` value. `last_digits_card_number` value must be 4 digits."
+              },
+              {
+                "name": "from_settled_date",
+                "value": "",
+                "type": "query",
+                "description": "Returns payments settled on or after the `from_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account."
+              },
+              {
+                "name": "to_settled_date",
+                "value": "",
+                "type": "query",
+                "description": "Returns payments settled before the `to_settled_date` value. You can only search by settled date if your payment service provider is Stripe. Date must be in ISO 8601 format to date-level accuracy - `YYYY-MM-DD`. Payments are settled when your payment service provider sends funds to your bank account."
+              },
+              {
+                "name": "agreement_id",
+                "value": "abcefghjklmnopqr1234567890",
+                "type": "query",
+                "description": "Returns payments that were authorised using the agreement with this `agreement_id`. Must be an exact match."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint to [search for payments you’ve previously created](https://docs.payments.service.gov.uk/reporting/#search-payments/). Payments are sorted by date, with the most recently-created payment appearing first."
+        },
+        {
+          "info": {
+            "name": "Create a payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.payments.service.gov.uk/v1/payments",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint to [create a new payment](https://docs.payments.service.gov.uk/making_payments/)."
+        },
+        {
+          "info": {
+            "name": "Get information about a single payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.payments.service.gov.uk/v1/payments/:paymentId",
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "hu20sqlact5260q2nanm0q8u93",
+                "type": "path",
+                "description": "Returns the payment with the matching `payment_id`."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint to [get details about a single payment you’ve previously created](https://docs.payments.service.gov.uk/reporting/#get-information-about-a-single-payment)."
+        },
+        {
+          "info": {
+            "name": "Cancel payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.payments.service.gov.uk/v1/payments/:paymentId/cancel",
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "hu20sqlact5260q2nanm0q8u93",
+                "type": "path",
+                "description": "The `payment_id` of the payment you’re cancelling."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint [to cancel an unfinished payment](https://docs.payments.service.gov.uk/making_payments/#cancel-a-payment-that-s-in-progress)."
+        },
+        {
+          "info": {
+            "name": "Take a delayed payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicapi.payments.service.gov.uk/v1/payments/:paymentId/capture",
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "hu20sqlact5260q2nanm0q8u93",
+                "type": "path",
+                "description": "The `payment_id` of the payment you’re capturing."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint to [take (‘capture’) a delayed payment from the paying user’s bank account](https://docs.payments.service.gov.uk/delayed_capture/)."
+        },
+        {
+          "info": {
+            "name": "Get a payment's events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicapi.payments.service.gov.uk/v1/payments/:paymentId/events",
+            "params": [
+              {
+                "name": "paymentId",
+                "value": "hu20sqlact5260q2nanm0q8u93",
+                "type": "path",
+                "description": "Payment identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "You can use this endpoint to [get a list of a payment’s events](https://docs.payments.service.gov.uk/reporting/#get-a-payment-s-events). A payment event is when a payment’s `state` changes, such as when the payment is created, or when the paying user submits their details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

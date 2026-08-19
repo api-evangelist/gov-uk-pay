@@ -1,0 +1,1512 @@
+{
+  "item": [
+    {
+      "id": "79fe69d0-c239-4a22-9ce8-c39657324530",
+      "name": "Agreements",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "73800fc5-f99d-4a56-96ba-a1ac96b998fc",
+          "name": "Search agreements for recurring payments",
+          "request": {
+            "name": "Search agreements for recurring payments",
+            "description": {
+              "content": "You can use this endpoint to search for recurring payments agreements. The agreements are sorted by date, with the most recently-created agreements appearing first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "agreements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reference",
+                  "value": "<string>",
+                  "description": "Returns agreements with a `reference` that exactly matches the value you sent. This parameter is not case sensitive. A `reference` was associated with the agreement when that agreement was created."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Returns agreements in a matching `status`. `status` reflects where an agreement is in its lifecycle. You can [read more about the meanings of the different agreement status values](https://docs.payments.service.gov.uk/recurring_payments/#understanding-agreement-status)."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Returns a specific page of results. Defaults to `1`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)"
+                },
+                {
+                  "disabled": false,
+                  "key": "display_size",
+                  "value": "<string>",
+                  "description": "The number of agreements returned per results page. Defaults to `500`. Maximum value is `500`. You can [read about search pagination](https://docs.payments.service.gov.uk/api_reference/#pagination)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "873abbf1-8e11-42dd-9251-4c5116b1bd9f",
+              "name": "OK - your request was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "CT-22-23-0001"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"first_page\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"last_page\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"next_page\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"prev_page\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    },\n    \"self\": {\n      \"href\": \"https://an.example.link/from/payment/platform\",\n      \"method\": \"GET\"\n    }\n  },\n  \"count\": 20,\n  \"page\": 1,\n  \"results\": [\n    {\n      \"agreement_id\": \"cgc1ocvh0pt9fqs0ma67r42l58\",\n      \"cancelled_date\": \"2022-07-08T14:33:00.000Z\",\n      \"created_date\": \"2022-07-08T14:33:00.000Z\",\n      \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n      \"payment_instrument\": {\n        \"CardDetails\": {\n          \"billing_address\": {\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postcode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"card_brand\": \"string\",\n          \"card_type\": \"string\",\n          \"cardholder_name\": \"string\",\n          \"expiry_date\": \"string\",\n          \"first_digits_card_number\": \"string\",\n          \"last_digits_card_number\": \"string\"\n        },\n        \"created_date\": \"2022-07-08T14:33:00.000Z\",\n        \"type\": \"card\"\n      },\n      \"reference\": \"CT-22-23-0001\",\n      \"status\": \"created\",\n      \"user_identifier\": \"user-3fb81107-76b7-4910\"\n    },\n    {\n      \"agreement_id\": \"cgc1ocvh0pt9fqs0ma67r42l58\",\n      \"cancelled_date\": \"2022-07-08T14:33:00.000Z\",\n      \"created_date\": \"2022-07-08T14:33:00.000Z\",\n      \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n      \"payment_instrument\": {\n        \"CardDetails\": {\n          \"billing_address\": {\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"line2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postcode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"card_brand\": \"string\",\n          \"card_type\": \"string\",\n          \"cardholder_name\": \"string\",\n          \"expiry_date\": \"string\",\n          \"first_digits_card_number\": \"string\",\n          \"last_digits_card_number\": \"string\"\n        },\n        \"created_date\": \"2022-07-08T14:33:00.000Z\",\n        \"type\": \"card\"\n      },\n      \"reference\": \"CT-22-23-0001\",\n      \"status\": \"created\",\n      \"user_identifier\": \"user-3fb81107-76b7-4910\"\n    }\n  ],\n  \"total\": 100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "288ff009-ba6b-4b26-a4f7-e01f06923b7b",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "CT-22-23-0001"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30aff4da-9704-4313-b5b7-5e54df05c81b",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "CT-22-23-0001"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e69541b6-a9fd-4c80-94a1-52e2aefc8a72",
+              "name": "Your request failed. Check the `code` and `description` in the response to find out why your request failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "CT-22-23-0001"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39bbde91-e62f-4ed5-abdc-a96d61df6a1d",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "CT-22-23-0001"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5e845e9-7704-4221-9a94-94fefbb35657",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reference",
+                      "value": "CT-22-23-0001"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_size",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f59a3912-43c2-4de3-85db-f2e90639388a",
+          "name": "Create an agreement for recurring payments",
+          "request": {
+            "name": "Create an agreement for recurring payments",
+            "description": {
+              "content": "You can use this endpoint to create a new agreement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "agreements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"user_identifier\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9cd7643b-5f28-4284-a4e4-424156a7f3ba",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n  \"reference\": \"CT-22-23-0001\",\n  \"user_identifier\": \"user-3fb81107-76b7-4910\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agreement_id\": \"cgc1ocvh0pt9fqs0ma67r42l58\",\n  \"cancelled_date\": \"2022-07-08T14:33:00.000Z\",\n  \"created_date\": \"2022-07-08T14:33:00.000Z\",\n  \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n  \"payment_instrument\": {\n    \"CardDetails\": {\n      \"billing_address\": {\n        \"city\": \"address city\",\n        \"country\": \"GB\",\n        \"line1\": \"address line 1\",\n        \"line2\": \"address line 2\",\n        \"postcode\": \"AB1 2CD\"\n      },\n      \"card_brand\": \"string\",\n      \"card_type\": \"string\",\n      \"cardholder_name\": \"string\",\n      \"expiry_date\": \"string\",\n      \"first_digits_card_number\": \"string\",\n      \"last_digits_card_number\": \"string\"\n    },\n    \"created_date\": \"2022-07-08T14:33:00.000Z\",\n    \"type\": \"card\"\n  },\n  \"reference\": \"CT-22-23-0001\",\n  \"status\": \"created\",\n  \"user_identifier\": \"user-3fb81107-76b7-4910\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "979ab708-b888-4a9c-a445-d0f162334c1b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n  \"reference\": \"CT-22-23-0001\",\n  \"user_identifier\": \"user-3fb81107-76b7-4910\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15a911db-b830-4116-8ebd-69e0c43db16c",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n  \"reference\": \"CT-22-23-0001\",\n  \"user_identifier\": \"user-3fb81107-76b7-4910\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c531155f-d204-41b5-907c-ffedbe0ff934",
+              "name": "Your request failed. Check the `code` and `description` in the response to find out why your request failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n  \"reference\": \"CT-22-23-0001\",\n  \"user_identifier\": \"user-3fb81107-76b7-4910\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d041be47-cb46-4e4c-a4f9-4b1f3faf5946",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n  \"reference\": \"CT-22-23-0001\",\n  \"user_identifier\": \"user-3fb81107-76b7-4910\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff376de4-1e7e-4c8f-bb7a-f355cfb397ad",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n  \"reference\": \"CT-22-23-0001\",\n  \"user_identifier\": \"user-3fb81107-76b7-4910\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85ddd7ef-55d6-4146-baeb-35a9d88e6b87",
+          "name": "Get information about a single agreement for recurring payments",
+          "request": {
+            "name": "Get information about a single agreement for recurring payments",
+            "description": {
+              "content": "You can use this endpoint to get information about a single recurring payments agreement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "agreements",
+                ":agreementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agreementId",
+                  "description": "(Required) Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9a8ffce2-dc7d-48eb-8bba-e9f683ad1d7a",
+              "name": "OK - your request was successful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agreement_id\": \"cgc1ocvh0pt9fqs0ma67r42l58\",\n  \"cancelled_date\": \"2022-07-08T14:33:00.000Z\",\n  \"created_date\": \"2022-07-08T14:33:00.000Z\",\n  \"description\": \"Dorset Council 2022/23 council tax subscription.\",\n  \"payment_instrument\": {\n    \"CardDetails\": {\n      \"billing_address\": {\n        \"city\": \"address city\",\n        \"country\": \"GB\",\n        \"line1\": \"address line 1\",\n        \"line2\": \"address line 2\",\n        \"postcode\": \"AB1 2CD\"\n      },\n      \"card_brand\": \"string\",\n      \"card_type\": \"string\",\n      \"cardholder_name\": \"string\",\n      \"expiry_date\": \"string\",\n      \"first_digits_card_number\": \"string\",\n      \"last_digits_card_number\": \"string\"\n    },\n    \"created_date\": \"2022-07-08T14:33:00.000Z\",\n    \"type\": \"card\"\n  },\n  \"reference\": \"CT-22-23-0001\",\n  \"status\": \"created\",\n  \"user_identifier\": \"user-3fb81107-76b7-4910\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a9415c6-150c-4158-9acc-103ecd614a03",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "333858cb-a1df-451f-9768-d6ffa9bbdfff",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01bfd936-b200-4067-afd2-4155684a78d1",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aba4fb8f-68b2-42ab-817a-f72607769198",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) Returns the agreement with the matching `agreement_id`. GOV.UK Pay generated an `agreement_id` when you created the agreement."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1810b2be-2be5-4799-b167-3f6c0e547190",
+          "name": "Cancel an agreement for recurring payments",
+          "request": {
+            "name": "Cancel an agreement for recurring payments",
+            "description": {
+              "content": "You can use this endpoint to cancel a recurring payments agreement in the `active` status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "agreements",
+                ":agreementId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agreementId",
+                  "description": "(Required) The `agreement_id` of the agreement you are cancelling"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3d29e1bf-9244-41b9-a156-ddf4e2006c48",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) The `agreement_id` of the agreement you are cancelling"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6f890a9e-379a-4aa4-813b-00a671c8d339",
+              "name": "Cancellation of agreement failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) The `agreement_id` of the agreement you are cancelling"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de65f7ec-92ef-4b5f-81f7-2cfd9e886dee",
+              "name": "Your API key is missing or invalid. Read more about [authenticating GOV.UK Pay API requests](https://docs.payments.service.gov.uk/api_reference/#authentication)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) The `agreement_id` of the agreement you are cancelling"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cad4f3a5-e1db-46b6-9f4f-636db7751633",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) The `agreement_id` of the agreement you are cancelling"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7038518-b988-4df3-874b-4f0c31392702",
+              "name": "Too many requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) The `agreement_id` of the agreement you are cancelling"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0900\",\n  \"description\": \"Too many requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2232d06c-7bda-4c10-9c04-9fb305a57644",
+              "name": "Downstream system error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "agreements",
+                    ":agreementId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agreementId",
+                      "description": "(Required) The `agreement_id` of the agreement you are cancelling"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"P0102\",\n  \"description\": \"Invalid attribute value: amount. Must be less than or equal to 10000000\",\n  \"field\": \"amount\",\n  \"header\": \"Idempotency-Key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://publicapi.payments.service.gov.uk",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d26219fe-5edd-4c4d-a933-9c53682dbe34",
+    "name": "GOV.UK Pay Agreements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The GOV.UK Pay REST API. Read [our documentation](https://docs.payments.service.gov.uk/) for more details.",
+      "type": "text/plain"
+    }
+  }
+}

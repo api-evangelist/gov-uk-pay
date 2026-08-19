@@ -27,7 +27,7 @@ tags:
 created: "2026-06-13"
 modified: "2026-06-13"
 url: https://github.com/api-evangelist/gov-uk-pay/blob/main/apis.yml
-specificationVersion: "0.19"
+specificationVersion: '0.23'
 apis:
 - aid: gov-uk-pay:gov-uk-pay-agreements-api
   name: GOV.UK Pay Agreements API

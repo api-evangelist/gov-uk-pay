@@ -23,6 +23,16 @@ tags:
   - PCI DSS
   - Refunds
   - Recurring Payments
+  - Webhook
+tags_raw:
+  - Payments
+  - Government
+  - UK
+  - Public Sector
+  - REST
+  - PCI DSS
+  - Refunds
+  - Recurring Payments
   - Webhooks
 created: "2026-06-13"
 modified: "2026-06-13"
@@ -96,6 +106,8 @@ apis:
   humanURL: https://docs.payments.service.gov.uk/
   baseURL: https://publicapi.payments.service.gov.uk/
   tags:
+  - Card Payments
+  tags_raw:
   - Card payments
   properties:
   - type: OpenAPI

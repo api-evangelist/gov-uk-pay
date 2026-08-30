@@ -120,7 +120,7 @@ apis:
   humanURL: https://docs.payments.service.gov.uk/
   baseURL: https://publicapi.payments.service.gov.uk/
   tags:
-  - Card Payments
+  - Card payments
   tags_raw:
   - Card payments
   properties:

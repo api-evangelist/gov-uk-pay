@@ -1,47 +1,52 @@
-# Kin Score artifact — gov-uk-pay — 2026-08-20T205517
+# Kin Score artifact — gov-uk-pay — 2026-09-20T232958
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: gov-uk-pay
-  schema_version: 0.12.0
-  scored_at: '2026-08-20'
-  run_ts: 2026-08-20T205517
-  composite: 36.4
-  band: thin
+  schema_version: 0.22.0
+  scored_at: '2026-09-20'
+  run_ts: 2026-09-20T232958
+  composite: 45.4
+  band: developing
   facets:
-    discoverability: 74.1
-    contract_quality: 63.0
-    governance: 9.8
-    operational_transparency: 15.8
-    developer_ergonomics: 11.9
-    commercial_clarity: 36.8
+    discoverability: 68.5
+    contract_quality: 60.4
     contract_governance: 9.8
-    access_clarity: 36.8
+    operational_transparency: 44.7
+    developer_ergonomics: 21.4
+    access_clarity: 47.4
   agent_readiness:
-    score: 48.6
+    score: 43.1
     band: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: documented
       mcp_server: false
-      auth_clarity: true
+      auth_clarity: bearer
       idempotency: verified
       error_semantics: verified
       openapi_examples: verified
-      rate_limit_signal: false
-      event_surface_described: false
+      rate_limit_signal: documented
+      event_surface_described: true
       agent_skills: false
       well_known_catalog: false
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   regulatory:
     applies: true
     regime: Payments
     regime_id: payments
-    score: 34.4
+    score: 40.6
     matched_via: tags
+  open_source:
+    applies: true
+    score: 65.0
   provenance:
     agentic_access: derived
     contracts:

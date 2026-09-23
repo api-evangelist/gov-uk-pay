@@ -1,11 +1,7 @@
 {
   "provider": "gov-uk-pay",
   "sources": [
-    "gov-uk-pay-agreements-api-openapi.yml",
-    "gov-uk-pay-authorise-card-payments-api-openapi.yml",
-    "gov-uk-pay-card-payments-api-openapi.yml",
-    "gov-uk-pay-disputes-api-openapi.yml",
-    "gov-uk-pay-refunding-card-payments-api-openapi.yml"
+    "_original/openapi.json"
   ],
   "outputs": [
     "gov-uk-pay-agreements-api-openapi.yml",
@@ -17,6 +13,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "openapi.json: declared missing tag: Authorise card payments",
+    "openapi.json: declared missing tag: Disputes",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "gov-uk-pay-agreements-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gov-uk-pay-authorise-card-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gov-uk-pay-card-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gov-uk-pay-disputes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gov-uk-pay-refunding-card-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

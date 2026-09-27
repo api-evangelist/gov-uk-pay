@@ -11,7 +11,7 @@ paths:
   /v1/auth:
     post:
       description: You can use this endpoint to authorise payments you have created with `authorisation_mode` set to `moto_api`.
-      operationId: Authorise a MOTO payment
+      operationId: AuthoriseAMOTOPayment
       requestBody:
         content:
           application/json:
@@ -48,8 +48,42 @@ paths:
       summary: Send card details to authorise a MOTO payment
       tags:
       - Authorise card payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Authorise a MOTO payment
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: An error response
+      properties:
+        code:
+          type: string
+          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
+          example: P0900
+        description:
+          type: string
+          description: Additional details about the error
+          example: Too many requests
+    RequestError:
+      type: object
+      description: A Request Error response
+      properties:
+        code:
+          type: string
+          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed.<br><br>`code` only appears if the payment failed.
+          example: P0102
+        description:
+          type: string
+          description: Additional details about the error.
+          example: 'Invalid attribute value: amount. Must be less than or equal to 10000000'
+        field:
+          type: string
+          description: The parameter in your request that's causing the error.
+          example: amount
+        header:
+          type: string
+          description: The header in your request that's causing the error.
+          example: Idempotency-Key
     AuthorisationRequest:
       type: object
       description: Contains the user's payment information. This information will be sent to the payment service provider to authorise the payment.
@@ -89,38 +123,6 @@ components:
       - cvc
       - expiry_date
       - one_time_token
-    RequestError:
-      type: object
-      description: A Request Error response
-      properties:
-        code:
-          type: string
-          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed.<br><br>`code` only appears if the payment failed.
-          example: P0102
-        description:
-          type: string
-          description: Additional details about the error.
-          example: 'Invalid attribute value: amount. Must be less than or equal to 10000000'
-        field:
-          type: string
-          description: The parameter in your request that's causing the error.
-          example: amount
-        header:
-          type: string
-          description: The header in your request that's causing the error.
-          example: Idempotency-Key
-    ErrorResponse:
-      type: object
-      description: An error response
-      properties:
-        code:
-          type: string
-          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
-          example: P0900
-        description:
-          type: string
-          description: Additional details about the error
-          example: Too many requests
   securitySchemes:
     BearerAuth:
       description: 'GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750). You need to use an `"Authorization"` HTTP header to provide your API key, with a `"Bearer"` prefix. For example: `Authorization: Bearer {YOUR_API_KEY_HERE}`'

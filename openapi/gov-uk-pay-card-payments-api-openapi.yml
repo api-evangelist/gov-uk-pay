@@ -11,7 +11,7 @@ paths:
   /v1/payments:
     get:
       description: You can use this endpoint to search for payments you’ve previously created. Payments are sorted by date, with the most recently-created payment appearing first.
-      operationId: Search payments
+      operationId: SearchPayments
       parameters:
       - description: Returns payments with `reference` values exactly matching your specified value.
         in: query
@@ -127,9 +127,11 @@ paths:
       summary: Search payments
       tags:
       - Card Payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Search payments
     post:
       description: You can use this endpoint to create a new payment.
-      operationId: Create a payment
+      operationId: CreateAPayment
       parameters:
       - in: header
         name: Idempotency-Key
@@ -181,10 +183,12 @@ paths:
       summary: Create a payment
       tags:
       - Card Payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Create a payment
   /v1/payments/{paymentId}:
     get:
       description: You can use this endpoint to get details about a single payment you’ve previously created.
-      operationId: Get a payment
+      operationId: GetAPayment
       parameters:
       - description: Returns the payment with the matching `payment_id`.
         example: hu20sqlact5260q2nanm0q8u93
@@ -225,10 +229,12 @@ paths:
       summary: Get information about a single payment
       tags:
       - Card Payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Get a payment
   /v1/payments/{paymentId}/cancel:
     post:
       description: You can use this endpoint to cancel an unfinished payment.
-      operationId: Cancel a payment
+      operationId: CancelAPayment
       parameters:
       - description: The `payment_id` of the payment you’re cancelling.
         example: hu20sqlact5260q2nanm0q8u93
@@ -277,10 +283,12 @@ paths:
       summary: Cancel payment
       tags:
       - Card Payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Cancel a payment
   /v1/payments/{paymentId}/capture:
     post:
       description: You can use this endpoint to take (‘capture’) a delayed payment from the paying user’s bank account.
-      operationId: Capture a payment
+      operationId: CaptureAPayment
       parameters:
       - description: The `payment_id` of the payment you’re capturing.
         example: hu20sqlact5260q2nanm0q8u93
@@ -329,10 +337,12 @@ paths:
       summary: Take a delayed payment
       tags:
       - Card Payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Capture a payment
   /v1/payments/{paymentId}/events:
     get:
       description: You can use this endpoint to get a list of a payment’s events. A payment event is when a payment’s `state` changes, such as when the payment is created, or when the paying user submits their details.
-      operationId: Get events for a payment
+      operationId: GetEventsForAPayment
       parameters:
       - description: Payment identifier
         example: hu20sqlact5260q2nanm0q8u93
@@ -373,88 +383,18 @@ paths:
       summary: Get a payment's events
       tags:
       - Card Payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Get events for a payment
 components:
   schemas:
-    PrefilledCardholderDetails:
+    ExternalMetadata:
       type: object
-      description: prefilled_cardholder_details
+      example: '{"property1": "value1", "property2": "value2"}"'
       properties:
-        billing_address:
-          $ref: '#/components/schemas/Address'
-        cardholder_name:
-          type: string
-          description: The cardholder name you prefilled when you created this payment.
-          example: J. Bogs
-          maxLength: 255
-          minLength: 0
-    PaymentEvents:
-      type: object
-      description: A List of Payment Events information
-      properties:
-        _links:
-          $ref: '#/components/schemas/PaymentLinksForEvents'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/PaymentEvent'
-        payment_id:
-          type: string
-          description: The unique ID GOV.UK Pay automatically associated with this payment when you created it.
-          example: hu20sqlact5260q2nanm0q8u93
-          readOnly: true
-    Link:
-      type: object
-      description: A link related to a payment
-      properties:
-        href:
-          type: string
-          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
-          example: https://an.example.link/from/payment/platform
-          readOnly: true
-        method:
-          type: string
-          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
-          example: GET
-          readOnly: true
-    PaymentSettlementSummary:
-      type: object
-      description: A structure representing information about a settlement
-      properties:
-        capture_submit_time:
-          type: string
-          description: The date and time GOV.UK Pay asked your payment service provider to take the payment from your user’s account. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ss.SSSZ`
-          example: '2016-01-21T17:15:00.000Z'
-          readOnly: true
-        captured_date:
-          type: string
-          description: The date your payment service provider took the payment from your user. This value uses ISO 8601 format - `YYYY-MM-DD`
-          example: '2016-01-21'
-          readOnly: true
-        settled_date:
-          type: string
-          description: The date that the transaction was paid into the service's account.
-          example: '2016-01-21'
-          readOnly: true
-    PaymentLinks:
-      type: object
-      description: links for payment
-      properties:
-        auth_url_post:
-          $ref: '#/components/schemas/PostLink'
-        cancel:
-          $ref: '#/components/schemas/PostLink'
-        capture:
-          $ref: '#/components/schemas/PostLink'
-        events:
-          $ref: '#/components/schemas/Link'
-        next_url:
-          $ref: '#/components/schemas/Link'
-        next_url_post:
-          $ref: '#/components/schemas/PostLink'
-        refunds:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
+        metadata:
+          type: object
+          additionalProperties:
+            type: object
     CardDetails:
       type: object
       description: A structure representing the payment card
@@ -498,6 +438,106 @@ components:
           - Apple Pay
           - Google Pay
           example: Apple Pay
+    Outcome:
+      type: object
+      description: A structure representing the outcome of a 3DS exemption, if known.
+      properties:
+        result:
+          type: string
+          description: The outcome of the requested exemption
+          example: honoured
+          readOnly: true
+      readOnly: true
+    PrefilledCardholderDetails:
+      type: object
+      description: prefilled_cardholder_details
+      properties:
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        cardholder_name:
+          type: string
+          description: The cardholder name you prefilled when you created this payment.
+          example: J. Bogs
+          maxLength: 255
+          minLength: 0
+    PaymentSearchResults:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/SearchNavigationLinks'
+        count:
+          type: integer
+          format: int32
+          description: Number of payments on the current page of search results.
+          example: 20
+        page:
+          type: integer
+          format: int32
+          description: The [page of results you’re viewing](https://docs.payments.service.gov.uk/api_reference/#pagination). To view other pages, make this request again using the `page` parameter.
+          example: 1
+        results:
+          type: array
+          description: Contains payments matching your search criteria.
+          items:
+            $ref: '#/components/schemas/PaymentDetailForSearch'
+        total:
+          type: integer
+          format: int32
+          description: Total number of payments matching your search criteria.
+          example: 100
+    Exemption:
+      type: object
+      description: A structure representing that 3DS exemption was requested and the outcome of the exemption, if applicable.
+      properties:
+        outcome:
+          $ref: '#/components/schemas/Outcome'
+        requested:
+          type: boolean
+          description: Indicates whether an exemption was requested for the given payment.
+          example: true
+          readOnly: true
+        type:
+          type: string
+          description: Indicates the type of exemption. Only present for corporate exemption
+          example: corporate
+          readOnly: true
+    CardDetailsFromResponse:
+      type: object
+      properties:
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        card_brand:
+          type: string
+        card_type:
+          type: string
+        cardholder_name:
+          type: string
+        expiry_date:
+          type: string
+        first_digits_card_number:
+          type: string
+        last_digits_card_number:
+          type: string
+    PaymentLinks:
+      type: object
+      description: links for payment
+      properties:
+        auth_url_post:
+          $ref: '#/components/schemas/PostLink'
+        cancel:
+          $ref: '#/components/schemas/PostLink'
+        capture:
+          $ref: '#/components/schemas/PostLink'
+        events:
+          $ref: '#/components/schemas/Link'
+        next_url:
+          $ref: '#/components/schemas/Link'
+        next_url_post:
+          $ref: '#/components/schemas/PostLink'
+        refunds:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
     CreateCardPaymentRequest:
       type: object
       description: The create payment request body
@@ -581,6 +621,97 @@ components:
       - description
       - reference
       - return_url
+    ErrorResponse:
+      type: object
+      description: An error response
+      properties:
+        code:
+          type: string
+          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
+          example: P0900
+        description:
+          type: string
+          description: Additional details about the error
+          example: Too many requests
+    PaymentState:
+      type: object
+      description: A structure representing the current state of the payment in its lifecycle.
+      properties:
+        can_retry:
+          type:
+          - boolean
+          - 'null'
+          description: If `can_retry` is `true`, you can use this agreement to try to take another recurring payment. If `can_retry` is `false`, you cannot take another recurring payment with this agreement. `can_retry` only appears on failed payments that were attempted using an agreement for recurring payments.
+          readOnly: true
+        code:
+          type: string
+          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed. `code` only appears if the payment failed.
+          example: P010
+          readOnly: true
+        finished:
+          type: boolean
+          description: Indicates whether a payment journey is finished.
+          readOnly: true
+        message:
+          type: string
+          description: A description of what went wrong with this payment. `message` only appears if the payment failed.
+          example: User cancelled the payment
+          readOnly: true
+        status:
+          type: string
+          description: Where the payment is in [the payment status lifecycle](https://docs.payments.service.gov.uk/api_reference/#payment-status-meanings).
+          example: created
+          readOnly: true
+    RefundSummary:
+      type: object
+      description: A structure representing the refunds availability
+      properties:
+        amount_available:
+          type: integer
+          format: int64
+          description: How much you can refund to the user, in pence.
+          example: 100
+          readOnly: true
+        amount_submitted:
+          type: integer
+          format: int64
+          description: How much you’ve already refunded to the user, in pence.
+          readOnly: true
+        status:
+          type: string
+          description: Whether you can [refund the payment](https://docs.payments.service.gov.uk/refunding_payments/#checking-the-status-of-a-refund-status).
+          example: available
+    PaymentEventLink:
+      type: object
+      description: Resource link for a payment of a payment event
+      properties:
+        payment_url:
+          $ref: '#/components/schemas/Link'
+    PaymentLinksForEvents:
+      type: object
+      description: links for events resource
+      properties:
+        self:
+          $ref: '#/components/schemas/Link'
+    PaymentSettlementSummary:
+      type: object
+      description: A structure representing information about a settlement
+      properties:
+        capture_submit_time:
+          type: string
+          description: The date and time GOV.UK Pay asked your payment service provider to take the payment from your user’s account. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DDThh:mm:ss.SSSZ`
+          example: '2016-01-21T17:15:00.000Z'
+          readOnly: true
+        captured_date:
+          type: string
+          description: The date your payment service provider took the payment from your user. This value uses ISO 8601 format - `YYYY-MM-DD`
+          example: '2016-01-21'
+          readOnly: true
+        settled_date:
+          type: string
+          description: The date that the transaction was paid into the service's account.
+          example: '2016-01-21'
+          readOnly: true
     PaymentWithAllLinks:
       type: object
       properties:
@@ -700,14 +831,30 @@ components:
           description: Amount your user paid in pence, including corporate card fees. `total_amount` only appears if you [added a corporate card surcharge to the payment](https://docs.payments.service.gov.uk/corporate_card_surcharges/#add-corporate-card-fees).
           example: 1450
           readOnly: true
-    ExternalMetadata:
+    PostLink:
       type: object
-      example: '{"property1": "value1", "property2": "value2"}"'
+      description: A POST link related to a payment
       properties:
-        metadata:
+        href:
+          type: string
+          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
+          example: https://an.example.link/from/payment/platform
+          readOnly: true
+        method:
+          type: string
+          example: POST
+          readOnly: true
+        params:
           type: object
           additionalProperties:
             type: object
+            example:
+              description: This is a value for a parameter called description
+          example:
+            description: This is a value for a parameter called description
+        type:
+          type: string
+          example: application/x-www-form-urlencoded
     CreatePaymentResult:
       type: object
       properties:
@@ -775,244 +922,13 @@ components:
           $ref: '#/components/schemas/PaymentSettlementSummary'
         state:
           $ref: '#/components/schemas/PaymentState'
-    CardDetailsFromResponse:
+    ThreeDSecure:
       type: object
+      description: Object containing information about the 3D Secure authentication of the payment.
       properties:
-        billing_address:
-          $ref: '#/components/schemas/Address'
-        card_brand:
-          type: string
-        card_type:
-          type: string
-        cardholder_name:
-          type: string
-        expiry_date:
-          type: string
-        first_digits_card_number:
-          type: string
-        last_digits_card_number:
-          type: string
-    PaymentSearchResults:
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/SearchNavigationLinks'
-        count:
-          type: integer
-          format: int32
-          description: Number of payments on the current page of search results.
-          example: 20
-        page:
-          type: integer
-          format: int32
-          description: The [page of results you’re viewing](https://docs.payments.service.gov.uk/api_reference/#pagination). To view other pages, make this request again using the `page` parameter.
-          example: 1
-        results:
-          type: array
-          description: Contains payments matching your search criteria.
-          items:
-            $ref: '#/components/schemas/PaymentDetailForSearch'
-        total:
-          type: integer
-          format: int32
-          description: Total number of payments matching your search criteria.
-          example: 100
-    RefundSummary:
-      type: object
-      description: A structure representing the refunds availability
-      properties:
-        amount_available:
-          type: integer
-          format: int64
-          description: How much you can refund to the user, in pence.
-          example: 100
-          readOnly: true
-        amount_submitted:
-          type: integer
-          format: int64
-          description: How much you’ve already refunded to the user, in pence.
-          readOnly: true
-        status:
-          type: string
-          description: Whether you can [refund the payment](https://docs.payments.service.gov.uk/refunding_payments/#checking-the-status-of-a-refund-status).
-          example: available
-    PaymentLinksForSearch:
-      type: object
-      description: links for search payment resource
-      properties:
-        cancel:
-          $ref: '#/components/schemas/PostLink'
-        capture:
-          $ref: '#/components/schemas/PostLink'
-        events:
-          $ref: '#/components/schemas/Link'
-        refunds:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-    PaymentEventLink:
-      type: object
-      description: Resource link for a payment of a payment event
-      properties:
-        payment_url:
-          $ref: '#/components/schemas/Link'
-    PostLink:
-      type: object
-      description: A POST link related to a payment
-      properties:
-        href:
-          type: string
-          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
-          example: https://an.example.link/from/payment/platform
-          readOnly: true
-        method:
-          type: string
-          example: POST
-          readOnly: true
-        params:
-          type: object
-          additionalProperties:
-            type: object
-            example:
-              description: This is a value for a parameter called description
-          example:
-            description: This is a value for a parameter called description
-        type:
-          type: string
-          example: application/x-www-form-urlencoded
-    PaymentLinksForEvents:
-      type: object
-      description: links for events resource
-      properties:
-        self:
-          $ref: '#/components/schemas/Link'
-    RequestError:
-      type: object
-      description: A Request Error response
-      properties:
-        code:
-          type: string
-          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed.<br><br>`code` only appears if the payment failed.
-          example: P0102
-        description:
-          type: string
-          description: Additional details about the error.
-          example: 'Invalid attribute value: amount. Must be less than or equal to 10000000'
-        field:
-          type: string
-          description: The parameter in your request that's causing the error.
-          example: amount
-        header:
-          type: string
-          description: The header in your request that's causing the error.
-          example: Idempotency-Key
-    ErrorResponse:
-      type: object
-      description: An error response
-      properties:
-        code:
-          type: string
-          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
-          example: P0900
-        description:
-          type: string
-          description: Additional details about the error
-          example: Too many requests
-    Address:
-      type: object
-      description: A structure representing the billing address of a card
-      properties:
-        city:
-          type: string
-          description: The paying user's city.
-          example: address city
-          maxLength: 255
-          minLength: 0
-        country:
-          type: string
-          description: The paying user’s country, displayed as a 2-character ISO-3166-1-alpha-2 code.
-          example: GB
-        line1:
-          type: string
-          description: The first line of the paying user’s address.
-          example: address line 1
-          maxLength: 255
-          minLength: 0
-        line2:
-          type: string
-          description: The second line of the paying user’s address.
-          example: address line 2
-          maxLength: 255
-          minLength: 0
-        postcode:
-          type: string
-          description: The paying user's postcode.
-          example: AB1 2CD
-          maxLength: 25
-          minLength: 0
-    PaymentState:
-      type: object
-      description: A structure representing the current state of the payment in its lifecycle.
-      properties:
-        can_retry:
-          type:
-          - boolean
-          - 'null'
-          description: If `can_retry` is `true`, you can use this agreement to try to take another recurring payment. If `can_retry` is `false`, you cannot take another recurring payment with this agreement. `can_retry` only appears on failed payments that were attempted using an agreement for recurring payments.
-          readOnly: true
-        code:
-          type: string
-          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed. `code` only appears if the payment failed.
-          example: P010
-          readOnly: true
-        finished:
+        required:
           type: boolean
-          description: Indicates whether a payment journey is finished.
-          readOnly: true
-        message:
-          type: string
-          description: A description of what went wrong with this payment. `message` only appears if the payment failed.
-          example: User cancelled the payment
-          readOnly: true
-        status:
-          type: string
-          description: Where the payment is in [the payment status lifecycle](https://docs.payments.service.gov.uk/api_reference/#payment-status-meanings).
-          example: created
-          readOnly: true
-    PaymentEvent:
-      type: object
-      description: A List of Payment Events information
-      properties:
-        _links:
-          $ref: '#/components/schemas/PaymentEventLink'
-        payment_id:
-          type: string
-          description: The unique ID GOV.UK Pay automatically associated with this payment when you created it.
-          example: hu20sqlact5260q2nanm0q8u93
-          readOnly: true
-        state:
-          $ref: '#/components/schemas/PaymentState'
-        updated:
-          type: string
-          description: When this payment’s state changed. This value uses Coordinated Universal Time (UTC) and ISO-8601 format - `YYYY-MM-DDThh:mm:ss.SSSZ`.
-          example: '2017-01-10T16:44:48.646Z'
-          readOnly: true
-    Exemption:
-      type: object
-      description: A structure representing that 3DS exemption was requested and the outcome of the exemption, if applicable.
-      properties:
-        outcome:
-          $ref: '#/components/schemas/Outcome'
-        requested:
-          type: boolean
-          description: Indicates whether an exemption was requested for the given payment.
-          example: true
-          readOnly: true
-        type:
-          type: string
-          description: Indicates the type of exemption. Only present for corporate exemption
-          example: corporate
-          readOnly: true
+          description: Indicates if this payment was authorised with 3D Secure authentication. `required` is `true` if the payment required 3D Secure authentication.
     PaymentDetailForSearch:
       type: object
       description: Contains payments matching your search criteria.
@@ -1133,13 +1049,38 @@ components:
           description: Amount your user paid in pence, including corporate card fees. `total_amount` only appears if you [added a corporate card surcharge to the payment](https://docs.payments.service.gov.uk/corporate_card_surcharges/#add-corporate-card-fees).
           example: 1450
           readOnly: true
-    ThreeDSecure:
+    PaymentEvent:
       type: object
-      description: Object containing information about the 3D Secure authentication of the payment.
+      description: A List of Payment Events information
       properties:
-        required:
-          type: boolean
-          description: Indicates if this payment was authorised with 3D Secure authentication. `required` is `true` if the payment required 3D Secure authentication.
+        _links:
+          $ref: '#/components/schemas/PaymentEventLink'
+        payment_id:
+          type: string
+          description: The unique ID GOV.UK Pay automatically associated with this payment when you created it.
+          example: hu20sqlact5260q2nanm0q8u93
+          readOnly: true
+        state:
+          $ref: '#/components/schemas/PaymentState'
+        updated:
+          type: string
+          description: When this payment’s state changed. This value uses Coordinated Universal Time (UTC) and ISO-8601 format - `YYYY-MM-DDThh:mm:ss.SSSZ`.
+          example: '2017-01-10T16:44:48.646Z'
+          readOnly: true
+    PaymentLinksForSearch:
+      type: object
+      description: links for search payment resource
+      properties:
+        cancel:
+          $ref: '#/components/schemas/PostLink'
+        capture:
+          $ref: '#/components/schemas/PostLink'
+        events:
+          $ref: '#/components/schemas/Link'
+        refunds:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
     AuthorisationSummary:
       type: object
       description: Object containing information about the authentication of the payment.
@@ -1160,16 +1101,87 @@ components:
           $ref: '#/components/schemas/Link'
         self:
           $ref: '#/components/schemas/Link'
-    Outcome:
+    Link:
       type: object
-      description: A structure representing the outcome of a 3DS exemption, if known.
+      description: A link related to a payment
       properties:
-        result:
+        href:
           type: string
-          description: The outcome of the requested exemption
-          example: honoured
+          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
+          example: https://an.example.link/from/payment/platform
           readOnly: true
-      readOnly: true
+        method:
+          type: string
+          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
+          example: GET
+          readOnly: true
+    PaymentEvents:
+      type: object
+      description: A List of Payment Events information
+      properties:
+        _links:
+          $ref: '#/components/schemas/PaymentLinksForEvents'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentEvent'
+        payment_id:
+          type: string
+          description: The unique ID GOV.UK Pay automatically associated with this payment when you created it.
+          example: hu20sqlact5260q2nanm0q8u93
+          readOnly: true
+    Address:
+      type: object
+      description: A structure representing the billing address of a card
+      properties:
+        city:
+          type: string
+          description: The paying user's city.
+          example: address city
+          maxLength: 255
+          minLength: 0
+        country:
+          type: string
+          description: The paying user’s country, displayed as a 2-character ISO-3166-1-alpha-2 code.
+          example: GB
+        line1:
+          type: string
+          description: The first line of the paying user’s address.
+          example: address line 1
+          maxLength: 255
+          minLength: 0
+        line2:
+          type: string
+          description: The second line of the paying user’s address.
+          example: address line 2
+          maxLength: 255
+          minLength: 0
+        postcode:
+          type: string
+          description: The paying user's postcode.
+          example: AB1 2CD
+          maxLength: 25
+          minLength: 0
+    RequestError:
+      type: object
+      description: A Request Error response
+      properties:
+        code:
+          type: string
+          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed.<br><br>`code` only appears if the payment failed.
+          example: P0102
+        description:
+          type: string
+          description: Additional details about the error.
+          example: 'Invalid attribute value: amount. Must be less than or equal to 10000000'
+        field:
+          type: string
+          description: The parameter in your request that's causing the error.
+          example: amount
+        header:
+          type: string
+          description: The header in your request that's causing the error.
+          example: Idempotency-Key
   securitySchemes:
     BearerAuth:
       description: 'GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750). You need to use an `"Authorization"` HTTP header to provide your API key, with a `"Bearer"` prefix. For example: `Authorization: Bearer {YOUR_API_KEY_HERE}`'

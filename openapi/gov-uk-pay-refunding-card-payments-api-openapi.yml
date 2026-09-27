@@ -11,7 +11,7 @@ paths:
   /v1/payments/{paymentId}/refunds:
     get:
       description: You can use this endpoint to get a list of refunds for a payment.
-      operationId: Get all refunds for a payment
+      operationId: GetAllRefundsForAPayment
       parameters:
       - description: The unique `payment_id` of the payment you want a list of refunds for.
         in: path
@@ -51,9 +51,11 @@ paths:
       summary: Get information about a payment’s refunds
       tags:
       - Refunding card payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Get all refunds for a payment
     post:
       description: You can use this endpoint to fully or partially refund a payment.
-      operationId: Submit a refund for a payment
+      operationId: SubmitARefundForAPayment
       parameters:
       - description: The unique `payment_id` of the payment you want to refund.
         in: path
@@ -104,10 +106,12 @@ paths:
       summary: Refund a payment
       tags:
       - Refunding card payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Submit a refund for a payment
   /v1/payments/{paymentId}/refunds/{refundId}:
     get:
       description: You can use this endpoint to get details about an individual refund.
-      operationId: Get a payment refund
+      operationId: GetAPaymentRefund
       parameters:
       - description: The unique `payment_id` of the payment you want to view a refund of.
         in: path
@@ -153,10 +157,12 @@ paths:
       summary: Check the status of a refund
       tags:
       - Refunding card payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Get a payment refund
   /v1/refunds:
     get:
       description: You can use this endpoint to search refunds you’ve previously created. The refunds are sorted by date, with the most recently created refunds appearing first.
-      operationId: Search refunds
+      operationId: SearchRefunds
       parameters:
       - description: Returns refunds created on or after the `from_date`. Date and time must use Coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.
         example: '2015-08-13T12:35:00Z'
@@ -218,8 +224,37 @@ paths:
       summary: Search refunds
       tags:
       - Refunding card payments
+      x-operation-id-source: normalized
+      x-operation-id-original: Search refunds
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: An error response
+      properties:
+        code:
+          type: string
+          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
+          example: P0900
+        description:
+          type: string
+          description: Additional details about the error
+          example: Too many requests
+    EmbeddedRefunds:
+      type: object
+      properties:
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
+    RefundLinksForSearch:
+      type: object
+      description: links for search refunds resource
+      properties:
+        payment:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
     RefundSearchResults:
       type: object
       properties:
@@ -245,25 +280,28 @@ components:
           format: int32
           description: Number of refunds matching your search criteria.
           example: 100
-    Link:
+    RefundForSearchResult:
       type: object
-      description: A link related to a payment
       properties:
-        href:
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedRefunds'
+        _links:
+          $ref: '#/components/schemas/RefundLinksForSearch'
+        payment_id:
           type: string
-          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
-          example: https://an.example.link/from/payment/platform
-          readOnly: true
-        method:
-          type: string
-          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
-          example: GET
-          readOnly: true
-    RefundLinksForSearch:
+          description: The unique ID GOV.UK Pay associated with this payment when you created it.
+          example: hu20sqlact5260q2nanm0q8u93
+    SearchNavigationLinks:
       type: object
-      description: links for search refunds resource
+      description: Links to navigate through pages of your search.
       properties:
-        payment:
+        first_page:
+          $ref: '#/components/schemas/Link'
+        last_page:
+          $ref: '#/components/schemas/Link'
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
           $ref: '#/components/schemas/Link'
         self:
           $ref: '#/components/schemas/Link'
@@ -305,27 +343,20 @@ components:
           - error
           example: success
           readOnly: true
-    SearchNavigationLinks:
+    Link:
       type: object
-      description: Links to navigate through pages of your search.
+      description: A link related to a payment
       properties:
-        first_page:
-          $ref: '#/components/schemas/Link'
-        last_page:
-          $ref: '#/components/schemas/Link'
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-    EmbeddedRefunds:
-      type: object
-      properties:
-        refunds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Refund'
+        href:
+          type: string
+          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
+          example: https://an.example.link/from/payment/platform
+          readOnly: true
+        method:
+          type: string
+          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
+          example: GET
+          readOnly: true
     PaymentRefundRequest:
       type: object
       description: The Payment Refund Request Payload
@@ -346,27 +377,6 @@ components:
           minimum: 1
       required:
       - amount
-    RefundForSearchResult:
-      type: object
-      properties:
-        _embedded:
-          $ref: '#/components/schemas/EmbeddedRefunds'
-        _links:
-          $ref: '#/components/schemas/RefundLinksForSearch'
-        payment_id:
-          type: string
-          description: The unique ID GOV.UK Pay associated with this payment when you created it.
-          example: hu20sqlact5260q2nanm0q8u93
-    RefundSettlementSummary:
-      type: object
-      description: A structure representing information about a settlement for refunds
-      properties:
-        settled_date:
-          type: string
-          description: The date Stripe took the refund from a payout to your bank account. `settled_date` only appears if Stripe has taken the refund. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DD`.
-          example: '2016-01-21'
-          readOnly: true
-      readOnly: true
     Refund:
       type: object
       properties:
@@ -404,6 +414,16 @@ components:
           - error
           example: success
           readOnly: true
+    RefundSettlementSummary:
+      type: object
+      description: A structure representing information about a settlement for refunds
+      properties:
+        settled_date:
+          type: string
+          description: The date Stripe took the refund from a payout to your bank account. `settled_date` only appears if Stripe has taken the refund. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DD`.
+          example: '2016-01-21'
+          readOnly: true
+      readOnly: true
     RequestError:
       type: object
       description: A Request Error response
@@ -424,18 +444,6 @@ components:
           type: string
           description: The header in your request that's causing the error.
           example: Idempotency-Key
-    ErrorResponse:
-      type: object
-      description: An error response
-      properties:
-        code:
-          type: string
-          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
-          example: P0900
-        description:
-          type: string
-          description: Additional details about the error
-          example: Too many requests
   securitySchemes:
     BearerAuth:
       description: 'GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750). You need to use an `"Authorization"` HTTP header to provide your API key, with a `"Bearer"` prefix. For example: `Authorization: Bearer {YOUR_API_KEY_HERE}`'

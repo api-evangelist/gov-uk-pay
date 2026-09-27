@@ -11,7 +11,7 @@ paths:
   /v1/disputes:
     get:
       description: You can use this endpoint to search disputes. A dispute is when a paying user challenges a completed payment through their bank.
-      operationId: Search disputes
+      operationId: SearchDisputes
       parameters:
       - description: Returns disputes raised on or after the `from_date`. Date and time must be coordinated Universal Time (UTC) and ISO 8601 format to second-level accuracy - `YYYY-MM-DDThh:mm:ssZ`.
         example: '2015-08-13T12:35:00Z'
@@ -88,8 +88,70 @@ paths:
       summary: Search disputes
       tags:
       - Disputes
+      x-operation-id-source: normalized
+      x-operation-id-original: Search disputes
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: An error response
+      properties:
+        code:
+          type: string
+          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
+          example: P0900
+        description:
+          type: string
+          description: Additional details about the error
+          example: Too many requests
+    SettlementSummary:
+      type: object
+      description: Contains information about when a lost dispute was settled. A dispute is settled when your payment service provider takes it from a payout to your bank account. 'settlement_summary' only appears if you lost the dispute.
+      properties:
+        settled_date:
+          type: string
+          description: The date your payment service provider took the disputed payment and dispute fee from a payout to your bank account. This value appears in ISO 8601 format - `YYYY-MM-DD`. `settled_date` only appears if you lost the dispute.
+          example: '2022-07-28'
+          readOnly: true
+    DisputesSearchResults:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+          description: Number of disputes on the current page of search results.
+          example: 20
+        links:
+          $ref: '#/components/schemas/SearchNavigationLinks'
+        page:
+          type: integer
+          format: int32
+          description: The page of results you’re viewing. To view other pages, make this request again using the 'page' parameter.
+          example: 1
+        results:
+          type: array
+          description: Contains disputes matching your search criteria.
+          items:
+            $ref: '#/components/schemas/DisputeDetailForSearch'
+        total:
+          type: integer
+          format: int32
+          description: Number of total disputes matching your search criteria.
+          example: 100
+    SearchNavigationLinks:
+      type: object
+      description: Links to navigate through pages of your search.
+      properties:
+        first_page:
+          $ref: '#/components/schemas/Link'
+        last_page:
+          $ref: '#/components/schemas/Link'
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
     Link:
       type: object
       description: A link related to a payment
@@ -104,6 +166,12 @@ components:
           description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
           example: GET
           readOnly: true
+    DisputeLinksForSearch:
+      type: object
+      description: links for search dispute resource
+      properties:
+        payment:
+          $ref: '#/components/schemas/Link'
     DisputeDetailForSearch:
       type: object
       description: Contains disputes matching your search criteria.
@@ -160,35 +228,6 @@ components:
           description: 'The current status of the dispute. Possible values are: ''needs_response'', ''won'', ''lost'', ''under_review'''
           example: under_review
           readOnly: true
-    DisputeLinksForSearch:
-      type: object
-      description: links for search dispute resource
-      properties:
-        payment:
-          $ref: '#/components/schemas/Link'
-    SearchNavigationLinks:
-      type: object
-      description: Links to navigate through pages of your search.
-      properties:
-        first_page:
-          $ref: '#/components/schemas/Link'
-        last_page:
-          $ref: '#/components/schemas/Link'
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-    SettlementSummary:
-      type: object
-      description: Contains information about when a lost dispute was settled. A dispute is settled when your payment service provider takes it from a payout to your bank account. 'settlement_summary' only appears if you lost the dispute.
-      properties:
-        settled_date:
-          type: string
-          description: The date your payment service provider took the disputed payment and dispute fee from a payout to your bank account. This value appears in ISO 8601 format - `YYYY-MM-DD`. `settled_date` only appears if you lost the dispute.
-          example: '2022-07-28'
-          readOnly: true
     RequestError:
       type: object
       description: A Request Error response
@@ -209,43 +248,6 @@ components:
           type: string
           description: The header in your request that's causing the error.
           example: Idempotency-Key
-    ErrorResponse:
-      type: object
-      description: An error response
-      properties:
-        code:
-          type: string
-          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
-          example: P0900
-        description:
-          type: string
-          description: Additional details about the error
-          example: Too many requests
-    DisputesSearchResults:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: Number of disputes on the current page of search results.
-          example: 20
-        links:
-          $ref: '#/components/schemas/SearchNavigationLinks'
-        page:
-          type: integer
-          format: int32
-          description: The page of results you’re viewing. To view other pages, make this request again using the 'page' parameter.
-          example: 1
-        results:
-          type: array
-          description: Contains disputes matching your search criteria.
-          items:
-            $ref: '#/components/schemas/DisputeDetailForSearch'
-        total:
-          type: integer
-          format: int32
-          description: Number of total disputes matching your search criteria.
-          example: 100
   securitySchemes:
     BearerAuth:
       description: 'GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750). You need to use an `"Authorization"` HTTP header to provide your API key, with a `"Bearer"` prefix. For example: `Authorization: Bearer {YOUR_API_KEY_HERE}`'

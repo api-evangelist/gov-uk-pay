@@ -227,176 +227,6 @@ paths:
       x-operation-id-original: Cancel an agreement
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: An error response
-      properties:
-        code:
-          type: string
-          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
-          example: P0900
-        description:
-          type: string
-          description: Additional details about the error
-          example: Too many requests
-    AgreementSearchResults:
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/SearchNavigationLinks'
-        count:
-          type: integer
-          format: int32
-          description: Number of agreements on the current page of search results.
-          example: 20
-        page:
-          type: integer
-          format: int32
-          description: The [page of agreements you’re viewing](https://docs.payments.service.gov.uk/api_reference/#pagination). To view other pages, make this request again using the `page` parameter.
-          example: 1
-        results:
-          type: array
-          description: Contains agreements matching your search criteria.
-          items:
-            $ref: '#/components/schemas/Agreement'
-        total:
-          type: integer
-          format: int32
-          description: Total number of agreements matching your search criteria.
-          example: 100
-    PaymentInstrument:
-      type: object
-      properties:
-        CardDetails:
-          $ref: '#/components/schemas/CardDetailsFromResponse'
-        created_date:
-          type: string
-          description: The date and time you created this payment instrument. This value uses Coordinated Universal Time (UTC) and ISO 8601 format – `YYYY-MM-DDThh:mm:ss.sssZ`.
-          example: '2022-07-08T14:33:00.000Z'
-        type:
-          type: string
-          description: The type of payment instrument.
-          enum:
-          - card
-    SearchNavigationLinks:
-      type: object
-      description: Links to navigate through pages of your search.
-      properties:
-        first_page:
-          $ref: '#/components/schemas/Link'
-        last_page:
-          $ref: '#/components/schemas/Link'
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-    CreateAgreementRequest:
-      type: object
-      description: The Agreement Request Payload
-      properties:
-        description:
-          type: string
-          description: A human-readable description of the purpose of the agreement for recurring payments. We’ll show the description to your user when they make their first payment to activate this agreement. Limited to 255 characters.
-          example: Dorset Council 2022/23 council tax subscription.
-          maxLength: 255
-          minLength: 1
-        reference:
-          type: string
-          description: Associate a reference with this agreement to help you identify it. Limited to 255 characters.
-          example: CT-22-23-0001
-          maxLength: 255
-          minLength: 1
-        user_identifier:
-          type: string
-          description: Associate an identifier with the user who will enter into this agreement with your service.user_identifier is not unique – multiple agreements can have identical user_identifier values.You should not include personal data in user_identifier.
-          example: user-3fb81107-76b7-4910
-          maxLength: 255
-          minLength: 1
-    Link:
-      type: object
-      description: A link related to a payment
-      properties:
-        href:
-          type: string
-          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
-          example: https://an.example.link/from/payment/platform
-          readOnly: true
-        method:
-          type: string
-          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
-          example: GET
-          readOnly: true
-    CardDetailsFromResponse:
-      type: object
-      properties:
-        billing_address:
-          $ref: '#/components/schemas/Address'
-        card_brand:
-          type: string
-        card_type:
-          type: string
-        cardholder_name:
-          type: string
-        expiry_date:
-          type: string
-        first_digits_card_number:
-          type: string
-        last_digits_card_number:
-          type: string
-    Address:
-      type: object
-      description: A structure representing the billing address of a card
-      properties:
-        city:
-          type: string
-          description: The paying user's city.
-          example: address city
-          maxLength: 255
-          minLength: 0
-        country:
-          type: string
-          description: The paying user’s country, displayed as a 2-character ISO-3166-1-alpha-2 code.
-          example: GB
-        line1:
-          type: string
-          description: The first line of the paying user’s address.
-          example: address line 1
-          maxLength: 255
-          minLength: 0
-        line2:
-          type: string
-          description: The second line of the paying user’s address.
-          example: address line 2
-          maxLength: 255
-          minLength: 0
-        postcode:
-          type: string
-          description: The paying user's postcode.
-          example: AB1 2CD
-          maxLength: 25
-          minLength: 0
-    RequestError:
-      type: object
-      description: A Request Error response
-      properties:
-        code:
-          type: string
-          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed.<br><br>`code` only appears if the payment failed.
-          example: P0102
-        description:
-          type: string
-          description: Additional details about the error.
-          example: 'Invalid attribute value: amount. Must be less than or equal to 10000000'
-        field:
-          type: string
-          description: The parameter in your request that's causing the error.
-          example: amount
-        header:
-          type: string
-          description: The header in your request that's causing the error.
-          example: Idempotency-Key
     Agreement:
       type: object
       description: Contains information about a user's agreement for recurring payments. An agreement represents an understanding between you and your paying user that you'll use their card to make ongoing payments for a service.
@@ -435,6 +265,176 @@ components:
           type: string
           description: The identifier you sent when creating this agreement. `user_identifier` helps you identify users in your records.
           example: user-3fb81107-76b7-4910
+    PaymentInstrument:
+      type: object
+      properties:
+        CardDetails:
+          $ref: '#/components/schemas/CardDetailsFromResponse'
+        created_date:
+          type: string
+          description: The date and time you created this payment instrument. This value uses Coordinated Universal Time (UTC) and ISO 8601 format – `YYYY-MM-DDThh:mm:ss.sssZ`.
+          example: '2022-07-08T14:33:00.000Z'
+        type:
+          type: string
+          description: The type of payment instrument.
+          enum:
+          - card
+    Link:
+      type: object
+      description: A link related to a payment
+      properties:
+        href:
+          type: string
+          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
+          example: https://an.example.link/from/payment/platform
+          readOnly: true
+        method:
+          type: string
+          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
+          example: GET
+          readOnly: true
+    Address:
+      type: object
+      description: A structure representing the billing address of a card
+      properties:
+        city:
+          type: string
+          description: The paying user's city.
+          example: address city
+          maxLength: 255
+          minLength: 0
+        country:
+          type: string
+          description: The paying user’s country, displayed as a 2-character ISO-3166-1-alpha-2 code.
+          example: GB
+        line1:
+          type: string
+          description: The first line of the paying user’s address.
+          example: address line 1
+          maxLength: 255
+          minLength: 0
+        line2:
+          type: string
+          description: The second line of the paying user’s address.
+          example: address line 2
+          maxLength: 255
+          minLength: 0
+        postcode:
+          type: string
+          description: The paying user's postcode.
+          example: AB1 2CD
+          maxLength: 25
+          minLength: 0
+    ErrorResponse:
+      type: object
+      description: An error response
+      properties:
+        code:
+          type: string
+          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
+          example: P0900
+        description:
+          type: string
+          description: Additional details about the error
+          example: Too many requests
+    RequestError:
+      type: object
+      description: A Request Error response
+      properties:
+        code:
+          type: string
+          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed.<br><br>`code` only appears if the payment failed.
+          example: P0102
+        description:
+          type: string
+          description: Additional details about the error.
+          example: 'Invalid attribute value: amount. Must be less than or equal to 10000000'
+        field:
+          type: string
+          description: The parameter in your request that's causing the error.
+          example: amount
+        header:
+          type: string
+          description: The header in your request that's causing the error.
+          example: Idempotency-Key
+    CardDetailsFromResponse:
+      type: object
+      properties:
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        card_brand:
+          type: string
+        card_type:
+          type: string
+        cardholder_name:
+          type: string
+        expiry_date:
+          type: string
+        first_digits_card_number:
+          type: string
+        last_digits_card_number:
+          type: string
+    CreateAgreementRequest:
+      type: object
+      description: The Agreement Request Payload
+      properties:
+        description:
+          type: string
+          description: A human-readable description of the purpose of the agreement for recurring payments. We’ll show the description to your user when they make their first payment to activate this agreement. Limited to 255 characters.
+          example: Dorset Council 2022/23 council tax subscription.
+          maxLength: 255
+          minLength: 1
+        reference:
+          type: string
+          description: Associate a reference with this agreement to help you identify it. Limited to 255 characters.
+          example: CT-22-23-0001
+          maxLength: 255
+          minLength: 1
+        user_identifier:
+          type: string
+          description: Associate an identifier with the user who will enter into this agreement with your service.user_identifier is not unique – multiple agreements can have identical user_identifier values.You should not include personal data in user_identifier.
+          example: user-3fb81107-76b7-4910
+          maxLength: 255
+          minLength: 1
+    AgreementSearchResults:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/SearchNavigationLinks'
+        count:
+          type: integer
+          format: int32
+          description: Number of agreements on the current page of search results.
+          example: 20
+        page:
+          type: integer
+          format: int32
+          description: The [page of agreements you’re viewing](https://docs.payments.service.gov.uk/api_reference/#pagination). To view other pages, make this request again using the `page` parameter.
+          example: 1
+        results:
+          type: array
+          description: Contains agreements matching your search criteria.
+          items:
+            $ref: '#/components/schemas/Agreement'
+        total:
+          type: integer
+          format: int32
+          description: Total number of agreements matching your search criteria.
+          example: 100
+    SearchNavigationLinks:
+      type: object
+      description: Links to navigate through pages of your search.
+      properties:
+        first_page:
+          $ref: '#/components/schemas/Link'
+        last_page:
+          $ref: '#/components/schemas/Link'
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
   securitySchemes:
     BearerAuth:
       description: 'GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750). You need to use an `"Authorization"` HTTP header to provide your API key, with a `"Bearer"` prefix. For example: `Authorization: Bearer {YOUR_API_KEY_HERE}`'

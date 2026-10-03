@@ -92,18 +92,6 @@ paths:
       x-operation-id-original: Search disputes
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: An error response
-      properties:
-        code:
-          type: string
-          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
-          example: P0900
-        description:
-          type: string
-          description: Additional details about the error
-          example: Too many requests
     SettlementSummary:
       type: object
       description: Contains information about when a lost dispute was settled. A dispute is settled when your payment service provider takes it from a payout to your bank account. 'settlement_summary' only appears if you lost the dispute.
@@ -112,59 +100,6 @@ components:
           type: string
           description: The date your payment service provider took the disputed payment and dispute fee from a payout to your bank account. This value appears in ISO 8601 format - `YYYY-MM-DD`. `settled_date` only appears if you lost the dispute.
           example: '2022-07-28'
-          readOnly: true
-    DisputesSearchResults:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: Number of disputes on the current page of search results.
-          example: 20
-        links:
-          $ref: '#/components/schemas/SearchNavigationLinks'
-        page:
-          type: integer
-          format: int32
-          description: The page of results you’re viewing. To view other pages, make this request again using the 'page' parameter.
-          example: 1
-        results:
-          type: array
-          description: Contains disputes matching your search criteria.
-          items:
-            $ref: '#/components/schemas/DisputeDetailForSearch'
-        total:
-          type: integer
-          format: int32
-          description: Number of total disputes matching your search criteria.
-          example: 100
-    SearchNavigationLinks:
-      type: object
-      description: Links to navigate through pages of your search.
-      properties:
-        first_page:
-          $ref: '#/components/schemas/Link'
-        last_page:
-          $ref: '#/components/schemas/Link'
-        next_page:
-          $ref: '#/components/schemas/Link'
-        prev_page:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      description: A link related to a payment
-      properties:
-        href:
-          type: string
-          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
-          example: https://an.example.link/from/payment/platform
-          readOnly: true
-        method:
-          type: string
-          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
-          example: GET
           readOnly: true
     DisputeLinksForSearch:
       type: object
@@ -228,6 +163,32 @@ components:
           description: 'The current status of the dispute. Possible values are: ''needs_response'', ''won'', ''lost'', ''under_review'''
           example: under_review
           readOnly: true
+    Link:
+      type: object
+      description: A link related to a payment
+      properties:
+        href:
+          type: string
+          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
+          example: https://an.example.link/from/payment/platform
+          readOnly: true
+        method:
+          type: string
+          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
+          example: GET
+          readOnly: true
+    ErrorResponse:
+      type: object
+      description: An error response
+      properties:
+        code:
+          type: string
+          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
+          example: P0900
+        description:
+          type: string
+          description: Additional details about the error
+          example: Too many requests
     RequestError:
       type: object
       description: A Request Error response
@@ -248,6 +209,45 @@ components:
           type: string
           description: The header in your request that's causing the error.
           example: Idempotency-Key
+    DisputesSearchResults:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+          description: Number of disputes on the current page of search results.
+          example: 20
+        links:
+          $ref: '#/components/schemas/SearchNavigationLinks'
+        page:
+          type: integer
+          format: int32
+          description: The page of results you’re viewing. To view other pages, make this request again using the 'page' parameter.
+          example: 1
+        results:
+          type: array
+          description: Contains disputes matching your search criteria.
+          items:
+            $ref: '#/components/schemas/DisputeDetailForSearch'
+        total:
+          type: integer
+          format: int32
+          description: Number of total disputes matching your search criteria.
+          example: 100
+    SearchNavigationLinks:
+      type: object
+      description: Links to navigate through pages of your search.
+      properties:
+        first_page:
+          $ref: '#/components/schemas/Link'
+        last_page:
+          $ref: '#/components/schemas/Link'
+        next_page:
+          $ref: '#/components/schemas/Link'
+        prev_page:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
   securitySchemes:
     BearerAuth:
       description: 'GOV.UK Pay authenticates API calls with [OAuth2 HTTP bearer tokens](http://tools.ietf.org/html/rfc6750). You need to use an `"Authorization"` HTTP header to provide your API key, with a `"Bearer"` prefix. For example: `Authorization: Bearer {YOUR_API_KEY_HERE}`'

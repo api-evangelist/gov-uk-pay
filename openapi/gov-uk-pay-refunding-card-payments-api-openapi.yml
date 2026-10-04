@@ -228,6 +228,89 @@ paths:
       x-operation-id-original: Search refunds
 components:
   schemas:
+    RefundSearchResults:
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/SearchNavigationLinks'
+        count:
+          type: integer
+          format: int32
+          description: Number of refunds on the current page of search results.
+          example: 20
+        page:
+          type: integer
+          format: int32
+          description: The [page of results](payments.service.gov.uk/api_reference/#pagination) you’re viewing. To view other pages, make this request again using the `page` parameter.
+          example: 1
+        results:
+          type: array
+          description: Contains the refunds matching your search criteria.
+          items:
+            $ref: '#/components/schemas/RefundDetailForSearch'
+        total:
+          type: integer
+          format: int32
+          description: Number of refunds matching your search criteria.
+          example: 100
+    RequestError:
+      type: object
+      description: A Request Error response
+      properties:
+        code:
+          type: string
+          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed.<br><br>`code` only appears if the payment failed.
+          example: P0102
+        description:
+          type: string
+          description: Additional details about the error.
+          example: 'Invalid attribute value: amount. Must be less than or equal to 10000000'
+        field:
+          type: string
+          description: The parameter in your request that's causing the error.
+          example: amount
+        header:
+          type: string
+          description: The header in your request that's causing the error.
+          example: Idempotency-Key
+    RefundLinksForSearch:
+      type: object
+      description: links for search refunds resource
+      properties:
+        payment:
+          $ref: '#/components/schemas/Link'
+        self:
+          $ref: '#/components/schemas/Link'
+    RefundForSearchResult:
+      type: object
+      properties:
+        _embedded:
+          $ref: '#/components/schemas/EmbeddedRefunds'
+        _links:
+          $ref: '#/components/schemas/RefundLinksForSearch'
+        payment_id:
+          type: string
+          description: The unique ID GOV.UK Pay associated with this payment when you created it.
+          example: hu20sqlact5260q2nanm0q8u93
+    ErrorResponse:
+      type: object
+      description: An error response
+      properties:
+        code:
+          type: string
+          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
+          example: P0900
+        description:
+          type: string
+          description: Additional details about the error
+          example: Too many requests
+    EmbeddedRefunds:
+      type: object
+      properties:
+        refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Refund'
     SearchNavigationLinks:
       type: object
       description: Links to navigate through pages of your search.
@@ -242,9 +325,52 @@ components:
           $ref: '#/components/schemas/Link'
         self:
           $ref: '#/components/schemas/Link'
-    RefundDetailForSearch:
+    RefundSettlementSummary:
       type: object
-      description: Contains the refunds matching your search criteria.
+      description: A structure representing information about a settlement for refunds
+      properties:
+        settled_date:
+          type: string
+          description: The date Stripe took the refund from a payout to your bank account. `settled_date` only appears if Stripe has taken the refund. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DD`.
+          example: '2016-01-21'
+          readOnly: true
+      readOnly: true
+    Link:
+      type: object
+      description: A link related to a payment
+      properties:
+        href:
+          type: string
+          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
+          example: https://an.example.link/from/payment/platform
+          readOnly: true
+        method:
+          type: string
+          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
+          example: GET
+          readOnly: true
+    PaymentRefundRequest:
+      type: object
+      description: The Payment Refund Request Payload
+      properties:
+        amount:
+          type: integer
+          format: int32
+          description: The amount you want to [refund to your user](https://docs.payments.service.gov.uk/refunding_payments/) in pence.
+          example: 150000
+          maximum: 10000000
+          minimum: 1
+        refund_amount_available:
+          type: integer
+          format: int32
+          description: Amount in pence. Total amount still available before issuing the refund
+          example: 200000
+          maximum: 10000000
+          minimum: 1
+      required:
+      - amount
+    Refund:
+      type: object
       properties:
         _links:
           $ref: '#/components/schemas/RefundLinksForSearch'
@@ -280,135 +406,9 @@ components:
           - error
           example: success
           readOnly: true
-    EmbeddedRefunds:
+    RefundDetailForSearch:
       type: object
-      properties:
-        refunds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Refund'
-    PaymentRefundRequest:
-      type: object
-      description: The Payment Refund Request Payload
-      properties:
-        amount:
-          type: integer
-          format: int32
-          description: The amount you want to [refund to your user](https://docs.payments.service.gov.uk/refunding_payments/) in pence.
-          example: 150000
-          maximum: 10000000
-          minimum: 1
-        refund_amount_available:
-          type: integer
-          format: int32
-          description: Amount in pence. Total amount still available before issuing the refund
-          example: 200000
-          maximum: 10000000
-          minimum: 1
-      required:
-      - amount
-    RefundSettlementSummary:
-      type: object
-      description: A structure representing information about a settlement for refunds
-      properties:
-        settled_date:
-          type: string
-          description: The date Stripe took the refund from a payout to your bank account. `settled_date` only appears if Stripe has taken the refund. This value uses Coordinated Universal Time (UTC) and ISO 8601 format - `YYYY-MM-DD`.
-          example: '2016-01-21'
-          readOnly: true
-      readOnly: true
-    RefundLinksForSearch:
-      type: object
-      description: links for search refunds resource
-      properties:
-        payment:
-          $ref: '#/components/schemas/Link'
-        self:
-          $ref: '#/components/schemas/Link'
-    ErrorResponse:
-      type: object
-      description: An error response
-      properties:
-        code:
-          type: string
-          description: A GOV.UK Pay API error code. You can [find out more about this code in our documentation](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes).
-          example: P0900
-        description:
-          type: string
-          description: Additional details about the error
-          example: Too many requests
-    RequestError:
-      type: object
-      description: A Request Error response
-      properties:
-        code:
-          type: string
-          description: An [API error code](https://docs.payments.service.gov.uk/api_reference/#gov-uk-pay-api-error-codes)that explains why the payment failed.<br><br>`code` only appears if the payment failed.
-          example: P0102
-        description:
-          type: string
-          description: Additional details about the error.
-          example: 'Invalid attribute value: amount. Must be less than or equal to 10000000'
-        field:
-          type: string
-          description: The parameter in your request that's causing the error.
-          example: amount
-        header:
-          type: string
-          description: The header in your request that's causing the error.
-          example: Idempotency-Key
-    RefundForSearchResult:
-      type: object
-      properties:
-        _embedded:
-          $ref: '#/components/schemas/EmbeddedRefunds'
-        _links:
-          $ref: '#/components/schemas/RefundLinksForSearch'
-        payment_id:
-          type: string
-          description: The unique ID GOV.UK Pay associated with this payment when you created it.
-          example: hu20sqlact5260q2nanm0q8u93
-    RefundSearchResults:
-      type: object
-      properties:
-        _links:
-          $ref: '#/components/schemas/SearchNavigationLinks'
-        count:
-          type: integer
-          format: int32
-          description: Number of refunds on the current page of search results.
-          example: 20
-        page:
-          type: integer
-          format: int32
-          description: The [page of results](payments.service.gov.uk/api_reference/#pagination) you’re viewing. To view other pages, make this request again using the `page` parameter.
-          example: 1
-        results:
-          type: array
-          description: Contains the refunds matching your search criteria.
-          items:
-            $ref: '#/components/schemas/RefundDetailForSearch'
-        total:
-          type: integer
-          format: int32
-          description: Number of refunds matching your search criteria.
-          example: 100
-    Link:
-      type: object
-      description: A link related to a payment
-      properties:
-        href:
-          type: string
-          description: A URL that lets you perform additional actions to this payment when combined with the associated `method`.
-          example: https://an.example.link/from/payment/platform
-          readOnly: true
-        method:
-          type: string
-          description: An API method that lets you perform additional actions to this paymentwhen combined with the associated `href`.
-          example: GET
-          readOnly: true
-    Refund:
-      type: object
+      description: Contains the refunds matching your search criteria.
       properties:
         _links:
           $ref: '#/components/schemas/RefundLinksForSearch'

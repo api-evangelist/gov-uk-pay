@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 rate_limits:
   - type: Per-second POST limit (create payments)
     requests: 15
@@ -19,8 +23,8 @@ rate_limits:
     period: 1 second
     scope: All GET endpoints
     notes: GET requests are rate-limited at a very high level; normal usage is unlikely to be affected
-  error_response:
-    http_status: 429
-    error_code: P0900
-    retry_guidance: After one second, retry in a reasonable way
-  documentation_url: https://docs.payments.service.gov.uk/api_reference/
+error_response:
+  http_status: 429
+  error_code: P0900
+  retry_guidance: After one second, retry in a reasonable way
+documentation_url: https://docs.payments.service.gov.uk/api_reference/

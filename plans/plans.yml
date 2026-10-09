@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 plans:
   - name: Free (Government Services)
     description: GOV.UK Pay is free to use for public sector organisations. There is no charge to use the GOV.UK Pay API or platform. Payment Service Provider (PSP) transaction fees still apply and are negotiated separately through Crown Commercial Service or directly with Adyen/Stripe.
@@ -17,3 +21,15 @@ plans:
       - PCI DSS compliance managed by GOV.UK Pay
     eligibility: Public sector organisations in the UK (government, NHS, local authorities, police, armed forces)
     cost: Free (PSP transaction fees apply separately)
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Free (Government Services)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
